@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.7 21.7">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Преобразователь давления</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <circle style="fill:white" cx="10.85" cy="10.85" r="10.35"/>
+            <path class="colorFill" d="M10.85,1A9.85,9.85,0,1,1,1,10.85,9.86,9.86,0,0,1,10.85,1m0-1A10.85,10.85,0,1,0,21.7,10.85,10.85,10.85,0,0,0,10.85,0Z"/>
+            <path class="colorFill" d="M8.83,14.79V8.49h2.64a1.7,1.7,0,0,1,1.74,1.9,1.69,1.69,0,0,1-1.74,1.89H9.62v2.51Zm.79-3.2h1.72a1.06,1.06,0,0,0,1.07-1.2,1.06,1.06,0,0,0-1.07-1.21H9.62Z"/>
+        </g>
+    </g>
+</svg>

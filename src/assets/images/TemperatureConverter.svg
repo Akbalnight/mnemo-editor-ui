@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.7 21.7">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Термопреобразователь</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <circle style="fill:white" id="path3797" cx="10.85" cy="10.85" r="10.375" />
+    </g>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <path class="colorFill" d="M10.85,1A9.85,9.85,0,1,1,1,10.85,9.86,9.86,0,0,1,10.85,1m0-1A10.85,10.85,0,1,0,21.7,10.85,10.85,10.85,0,0,0,10.85,0Z"/>
+        <path class="colorFill" d="M10.57,14.79V9.18H8.65V8.49h4.61v.69H11.35v5.61Z"/>
+    </g>
+</svg>

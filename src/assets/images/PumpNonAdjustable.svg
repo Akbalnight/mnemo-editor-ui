@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.69 30">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Насос нерегулируемый с нереверсивным потоком</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <circle style="fill:white; stroke:none" cx="9.88" cy="14.24" r="9.38"/>
+            <polygon class="colorFill" points="8.28 9.4 9.84 6.69 11.41 9.4 8.28 9.4"/>
+            <path class="colorFill" d="M9.84,7.69l.7,1.21H9.15l.69-1.21m0-2L7.41,9.9h4.86L9.84,5.69Z"/>
+            <line class="colorStroke" x1="9.84" x2="9.84" y2="5.16"/>
+            <line class="colorStroke" x1="9.84" y1="24.38" x2="9.84" y2="30"/>
+            <path class="colorFill" d="M9.84,5.81A8.85,8.85,0,1,1,1,14.66,8.86,8.86,0,0,1,9.84,5.81m0-1a9.85,9.85,0,1,0,9.85,9.85A9.85,9.85,0,0,0,9.84,4.81Z"/>
+        </g>
+    </g>
+</svg>

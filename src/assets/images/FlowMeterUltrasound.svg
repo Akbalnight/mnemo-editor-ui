@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 11.08">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Расходомер ультразвуковой</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <line class="colorStroke" x1="24.07" y1="5.52" x2="30" y2="5.52"/>
+            <line class="colorStroke" y1="5.55" x2="5.93" y2="5.55"/>
+            <polygon class="colorStroke" style="fill:white" points="18.69 2.88 6.21 0.6 6.21 10.48 18.69 8.2 23.79 8.2 23.79 2.88 18.69 2.88"/>
+        </g>
+    </g>
+</svg>

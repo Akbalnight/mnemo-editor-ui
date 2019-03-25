@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.34 17.36">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Вентилятор центробежный</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <circle style="fill:white;" cx="8.5" cy="8.7" r="8.5"/>
+            <rect style="fill:white" width="14" height="7.5" x="8" y="0.74614471" />
+
+            <path class="colorFill" d="M8.66,6A2.71,2.71,0,1,1,6,8.7,2.72,2.72,0,0,1,8.66,6m0-1A3.71,3.71,0,1,0,12.37,8.7,3.71,3.71,0,0,0,8.66,5Z"/>
+            <path class="colorFill" d="M21.34,1V7.66h-5V8.72h0A7.66,7.66,0,1,1,8.62,1.05H9.73V1H21.34m1-1H8.73V.05H8.66A8.66,8.66,0,1,0,17.31,8.7v0h5V0Z"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Аппарат теплообменный листовой спиральный</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <circle style="fill:white;" cx="15" cy="14.5" r="8.5"/>
+
+        <path class="colorFill" d="M15,12.75A2.25,2.25,0,1,1,12.75,15,2.25,2.25,0,0,1,15,12.75m0-1A3.25,3.25,0,1,0,18.25,15,3.26,3.26,0,0,0,15,11.75Z"/>
+        <path class="colorFill" d="M15,10a5,5,0,1,1-5,5,5,5,0,0,1,5-5m0-1a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z"/>
+        <path class="colorFill" d="M15,7a8,8,0,1,1-8,8,8,8,0,0,1,8-8m0-1a9,9,0,1,0,9,9,9,9,0,0,0-9-9Z"/>
+        <line class="colorStroke" x1="15" x2="15" y2="6"/>
+        <line class="colorStroke" x1="15" y1="15" y2="15"/>
+        <line class="colorStroke" x1="30" y1="15" x2="24" y2="15"/>
+        <line class="colorStroke" x1="15" y1="24" x2="15" y2="30"/>
+        <line class="colorStroke" x1="15" y1="12" x2="15" y2="18"/>
+    </g>
+</svg>

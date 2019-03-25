@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 10.63">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Направление потока жидкости</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <polygon class="colorFill" points="19.6 5.32 10.4 0 10.4 10.63 19.6 5.32"/>
+            <line class="colorStroke" y1="5.31" x2="30" y2="5.31"/>
+        </g>
+    </g>
+</svg>

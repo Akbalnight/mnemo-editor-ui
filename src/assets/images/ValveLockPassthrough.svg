@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.7 11.34">
+
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Клапан (вентиль) запорный проходной</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <line class="colorStroke" y1="5.67" x2="11.83" y2="5.67"/>
+        <polygon style="fill:white" points="6.03 0.87 14.35 5.67 6.03 10.47 6.03 0.87"/>
+        <path class="colorFill" d="M6.53,1.73l6.82,3.94L6.53,9.61V1.73M5.53,0V11.34l9.82-5.67L5.53,0Z"/>
+        <line class="colorStroke" x1="16.33" y1="5.67" x2="29.7" y2="5.67"/>
+        <polygon style="fill:white" points="15.35 5.67 23.67 0.87 23.67 10.47 15.35 5.67"/>
+        <path class="colorFill" d="M23.17,1.73V9.61L16.35,5.67l6.82-3.94m1-1.73L14.35,5.67l9.82,5.67V0Z"/>
+    </g>
+</svg>

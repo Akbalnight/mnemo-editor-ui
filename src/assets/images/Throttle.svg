@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 13">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Клапан дроссельный</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <rect style="fill:white" width="19.739029" height="11.565836" x="5.2313166" y="0.74614471" />
+        <line class="colorStroke" y1="6.5" x2="30" y2="6.5"/>
+        <path class="colorFill" d="M24.5,1V12H5.5V1h19m1-1H4.5V13h21V0Z"/>
+        <line class="colorStroke" x1="5" y1="0.5" x2="25" y2="12.5"/>
+        <line class="colorStroke" x1="24.74" y1="0.65" x2="5" y2="12.5"/>
+    </g>
+</svg>

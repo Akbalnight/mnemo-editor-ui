@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.69 19.69">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Датчик перепада давления</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <circle style="fill:white;" cx="9.560576" cy="9.8519468" r="9.1293793" />
+            <path class="colorFill" d="M9.84,1A8.85,8.85,0,1,1,1,9.84,8.86,8.86,0,0,1,9.84,1m0-1a9.85,9.85,0,1,0,9.85,9.84A9.85,9.85,0,0,0,9.84,0Z"/>
+            <path class="colorFill" d="M5.42,12.08,7.34,7h.81L10,12.07v.41H5.42Zm3.83-.2-1.12-3C8,8.47,7.82,8,7.73,7.63h0c-.08.28-.23.74-.37,1.12L6.18,11.88Z"/>
+            <path class="colorFill" d="M11,12.48V6.77h2.4A1.53,1.53,0,0,1,15,8.49a1.52,1.52,0,0,1-1.57,1.71H11.75v2.28Zm.71-2.91h1.56a1,1,0,0,0,1-1.08,1,1,0,0,0-1-1.1H11.75Z"/>
+        </g>
+    </g>
+</svg>

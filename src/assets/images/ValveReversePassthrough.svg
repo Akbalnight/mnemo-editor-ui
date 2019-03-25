@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 11.34">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Клапан обратный проходной</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <line class="colorStroke" y1="5.67" x2="12.48" y2="5.67"/>
+        <polygon class="colorFill" points="6.68 0.87 15 5.67 6.68 10.47 6.68 0.87"/>
+        <path class="colorFill" d="M7.18,1.73,14,5.67,7.18,9.61V1.73M6.18,0V11.34L16,5.67,6.18,0Z"/>
+        <line class="colorStroke" x1="15.98" y1="5.67" x2="30" y2="5.67"/>
+        <polygon style="fill:white" points="15 5.67 23.32 0.87 23.32 10.47 15 5.67"/>
+        <path class="colorFill" d="M22.82,1.73V9.61L16,5.67l6.82-3.94m1-1.73L14,5.67l9.82,5.67V0Z"/>
+    </g>
+</svg>

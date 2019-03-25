@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 32">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Насос консольный</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <circle style="fill:white;" cx="14.5" cy="16.5" r="8.5"/>
+
+        <line class="colorStroke" x1="23.18" y1="0.5" x2="23.18" y2="16.32"/>
+        <line class="colorStroke" x1="14.59" y1="16.32" y2="16.32"/>
+        <path class="colorFill" d="M14.39,8.09a8.23,8.23,0,1,1-8.23,8.23,8.24,8.24,0,0,1,8.23-8.23m0-1a9.23,9.23,0,1,0,9.23,9.23,9.23,9.23,0,0,0-9.23-9.23Z"/>
+        <line class="colorStroke" x1="20.74" y1="0.5" x2="26.89" y2="0.5"/>
+        <circle class="colorFill" cx="14.59" cy="16.32" r="1.76"/>
+    </g>
+</svg>

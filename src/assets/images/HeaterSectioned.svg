@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.3 12.2">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Радиатор отопительный секционный</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <rect class="colorStroke" style="fill:white" x="17.42" y="0.5" width="3.38" height="11.2"
+              transform="translate(38.22 12.2) rotate(180)"/>
+        <rect class="colorStroke" style="fill:white" x="14.03" y="0.5" width="3.38" height="11.2"
+              transform="translate(31.45 12.2) rotate(180)"/>
+        <rect class="colorStroke" style="fill:white" x="10.65" y="0.5" width="3.38" height="11.2"
+              transform="translate(24.68 12.2) rotate(180)"/>
+        <rect class="colorStroke" style="fill:white" x="7.27" y="0.5" width="3.38" height="11.2"
+              transform="translate(17.92 12.2) rotate(180)"/>
+        <rect class="colorStroke" style="fill:white" x="3.88" y="0.5" width="3.38" height="11.2"
+              transform="translate(11.15 12.2) rotate(180)"/>
+        <rect class="colorStroke" style="fill:white" x="0.5" y="0.5" width="3.38" height="11.2"
+              transform="translate(4.38 12.2) rotate(180)"/>
+    </g>
+</svg>

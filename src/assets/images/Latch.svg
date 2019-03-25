@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 11.34">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Задвижка</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <line class="colorStroke" x1="16.5" y1="5.67" x2="30" y2="5.67"/>
+        <line class="colorStroke" y1="5.67" x2="13.5" y2="5.67"/>
+        <line class="colorStroke" x1="9.11" y1="5.67" x2="20.94" y2="5.67"/>
+        <polygon style="fill:white" points="6.2 0.87 14.52 5.67 6.2 10.47 6.2 0.87"/>
+        <path class="colorFill" d="M6.7,1.73l6.82,3.94L6.7,9.61V1.73M5.7,0V11.34l9.82-5.67L5.7,0Z"/>
+        <polygon style="fill:white" points="15.52 5.67 23.84 0.87 23.84 10.47 15.52 5.67"/>
+        <path class="colorFill" d="M23.34,1.73V9.61L16.52,5.67l6.82-3.94m1-1.73L14.52,5.67l9.82,5.67V0Z"/>
+        <line class="colorStroke" x1="15.02" y1="0.17" x2="15.02" y2="11.17"/>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.64 23.78">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Вентилятор осевой</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <rect style="fill:white" width="20" height="22" x="1" y="1" />
+
+        <path class="colorFill" d="M10.51,7.57,7.82,10.43,5.13,7.57h5.38m2.32-1h-10l5,5.32,5-5.32Z"/>
+        <path class="colorFill" d="M7.82,13.35l2.69,2.86H5.13l2.69-2.86m0-1.46-5,5.32h10l-5-5.32Z"/>
+        <path class="colorFill" d="M14.64,1V22.78H1V1H14.64m1-1H0V23.78H15.64V0Z"/>
+    </g>
+</svg>

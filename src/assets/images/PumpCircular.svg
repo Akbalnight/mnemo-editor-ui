@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.06 19.73">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Насос циркуляционный</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <circle style="fill:white;" cx="15.5" cy="9.8" r="9.5"/>
+
+        <polygon class="colorFill" points="11.43 2.98 23.36 9.87 11.43 16.75 11.43 2.98"/>
+        <path class="colorFill" d="M11.93,3.85l10.43,6-10.43,6v-12m-1-1.74V17.62L24.36,9.86,10.93,2.11Z"/>
+        <line class="colorStroke" x1="30.06" y1="9.86" x2="24.89" y2="9.86"/>
+        <line class="colorStroke" x1="5.63" y1="9.86" y2="9.86"/>
+        <path class="colorFill" d="M15.44,1A8.87,8.87,0,1,1,6.58,9.86,8.88,8.88,0,0,1,15.44,1m0-1a9.87,9.87,0,1,0,9.87,9.86A9.86,9.86,0,0,0,15.44,0Z"/>
+    </g>
+</svg>

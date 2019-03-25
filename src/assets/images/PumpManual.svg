@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.4 0 24.5 30">
+    <defs>
+        <style>.colorStroke{stroke:black;}</style>
+        <style>.colorFill{fill:black;}</style>
+    </defs>
+    <title>Насос ручной</title>
+    <g id="Layer_1-2" data-name="Layer 1">
+        <circle style="fill:white;" cx="9.88" cy="15.24" r="9.38"/>
+        <line class="colorStroke" x1="9.65" x2="9.65" y2="30"/>
+        <line class="colorStroke" x1="9.64" y1="15.01" x2="19.48" y2="5.16"/>
+        <line class="colorStroke" x1="17.16" y1="2.84" x2="21.8" y2="7.48"/>
+        <circle style="fill:none;" class="colorStroke" cx="9.88" cy="15.24" r="9.38"/>
+    </g>
+</svg>

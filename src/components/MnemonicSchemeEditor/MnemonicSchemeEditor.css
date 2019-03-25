@@ -1,0 +1,430 @@
+.mnemonic-scheme-editor {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+}
+
+/* Левый контейнер (инструменты) */
+.mnemonic-scheme-toolsPanel-container {
+	width: 360px;
+	margin: 15px;
+	border: 1px solid #DDDFE1;
+	background: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.mnemonic-scheme-toolsPanel-header {
+	border-bottom: 1px solid #DDDFE1;
+	color: #0079C0;
+	font-weight: 500;
+	width: 100%;
+	padding: 0 0 3px 5px;
+}
+
+/* Левый контейнер (инструменты) -> Дерево */
+.mnemonic-scheme-toolsPanel-tree-container .ant-tree-treenode-switcher-open {
+	margin-top: 1px;
+}
+
+.mnemonic-scheme-toolsPanel-tree.ant-tree li .ant-tree-node-content-wrapper {
+	height: auto;
+}
+
+.mnemonic-scheme-toolsPanel-tree.ant-tree li .ant-tree-node-content-wrapper:hover {
+	background: none;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-container {
+	display: flex;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-container:hover,
+.mnemonic-scheme-toolsPanel-tree-item-active {
+	position: relative;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-container:hover:before,
+.mnemonic-scheme-toolsPanel-tree-item-active:before {
+	content: '';
+	width: 500%;
+	left: -100%;
+	height: calc(100% + 8px);
+	top: -4px;
+	position: absolute;
+	z-index: 0;
+}
+
+
+.mnemonic-scheme-toolsPanel-tree-item-container:hover:before {
+	background: #e6f7ff;
+	transition: background-color .5s;
+}
+.mnemonic-scheme-toolsPanel-tree-item-active:before {
+	background: #e6f7ff;
+}
+.mnemonic-scheme-editor .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+	background: none;
+}
+
+
+.mnemonic-scheme-toolsPanel-tree-item-container:hover > *,
+.mnemonic-scheme-toolsPanel-tree-item-active > * {
+	z-index: 1;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-icon {
+	font-size: 30px;
+	border: 1px solid #DDDFE1;
+	padding: 3px;
+	height: 38px;
+}
+
+.mnemonic-scheme-toolsPanel-tree-item-title {
+	white-space: normal;
+	padding-left: 5px;
+	margin-top: -5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Правый контейнер */
+.mnemonic-scheme-drawingPanel-container {
+	width: calc(100% - 400px - 4px);
+	margin: 15px 15px 15px 0;
+	border: 1px solid #DDDFE1;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+}
+
+.mnemonic-scheme-drawingPanel-header {
+	border-bottom: 1px solid #DDDFE1;
+	width: 100%;
+	color: #0079C0;
+	font-weight: 500;
+	padding: 0 0 3px 5px;
+}
+
+/* Правый контейнер -> ряд input'ов сверху */
+.mnemonic-scheme-drawingPanel-topInputs-container {
+	margin: 20px 15px 15px 15px;
+}
+
+.mnemonic-scheme-drawingPanel-topInputs-dropdown {
+	width: calc(100% - 159px);
+}
+
+.mnemonic-scheme-rightPanel-topInputs-button {
+	margin: 0 0 0 5px;
+}
+
+.mnemonic-scheme-rightPanel-topInputs-rightGroup {
+	text-align: right;
+}
+
+/* Правый контейнер -> Контейнер с гридом */
+.mnemonic-scheme-rightPanel-viewPanel-outerContainer {
+	margin: 0 15px 15px 15px;
+	border: 1px solid #DDDFE1;
+	background-color: #e6e6e6;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-outerContainer {
+	/*height: 100%;*/ /* Для contain'а */
+
+	margin: 15px;
+	background-color: white;
+	border: 1px solid #DDDFE1;
+	padding: 15px;
+	overflow: auto;
+}
+
+/* Правый контейнер -> Контейнер с гридом -> Сам грид */
+.mnemonic-scheme-rightPanel-viewPanel-grid-ratio {
+	/*width: 100%;*/ /* Для contain'а */
+	/*height: 100%;*/ /* Для contain'а */
+	/*text-align: center;*/ /* Для contain'а */
+
+	width: 100%;
+	padding-top: calc(100% * 76 / 124); /* Aspect Ratio */
+	position: relative;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-ratio > svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-ratio > div {
+	/*display: inline-block;*/ /* Для contain'а */
+}
+
+svg.mnemonic-scheme-rightPanel-viewPanel-grid-field {
+	/*height: 100%;*/ /* Для contain'а */
+	/*width: 100%;*/ /* Для contain'а */
+	border: 1px solid #dee0e2;
+}
+
+svg.mnemonic-scheme-rightPanel-viewPanel-grid-field * {
+	vector-effect: non-scaling-stroke;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-field-addedFigure * {
+	vector-effect: none;
+}
+
+/* Правый контейнер -> Контейнер с гридом -> Сам грид -> Разметка */
+.mnemonic-scheme-rightPanel-viewPanel-grid-line-main,
+.mnemonic-scheme-rightPanel-viewPanel-grid-line-additional {
+	stroke-width: 1px;
+	stroke: #dee0e2;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-line-main {
+	stroke-dasharray: 1 0;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-line-additional {
+	stroke-dasharray: 1;
+	stroke: #eee;
+}
+
+
+/* Правый контейнер -> Две панели ниже грида */
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-container {
+	margin: 0 15px 15px 15px;
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
+	/*height: 155px;*/
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel {
+	width: 50%;
+	background-color: white;
+	border: 1px solid #DDDFE1;
+	/*height: 150px;*/
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel:first-child {
+	margin-right: 15px;
+
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-header {
+	color: #6AA3BF;
+	font-weight: 500;
+	padding: 5px 0 5px 15px;
+	border-bottom: 1px solid #DDDFE1;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row {
+	padding: 5px 15px;
+	position: relative;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row + .mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row:after {
+	content: '';
+	height: 1px;
+	top: 0;
+	width: calc(100% - 32px);
+	left: 16px;
+	background: #DDDFE1;
+	position: absolute;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row > .ant-col-12 {
+	min-height: 40px;
+	flex-shrink: 0;
+}
+
+.ant-col-12.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-titleColumn {
+	padding-top: 10px;
+}
+
+.ant-col-12.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn {
+	display: flex;
+	flex-direction: row-reverse;
+	align-content: flex-end;
+	align-items: center;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-colorPicker {
+	display: flex;
+	flex-direction: row;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-bottomPanels-colorPicker-color {
+	width:30px;
+	height: 30px;
+	min-height: 30px;
+	min-width:30px;
+	margin-left: 5px;
+	border: 1px solid #DDDFE1;
+	cursor: pointer;
+}
+
+.mnemonic-scheme-editor-highlighted-element {
+	filter: url(#mnemonic-scheme-editor-blur-filter);
+}
+
+
+.mnemonic-scheme-editor-highlighted-light-element {
+	filter: url(#mnemonic-scheme-editor-light-blur-filter);
+}
+
+.mnemonic-scheme-shader {
+	position: relative;
+}
+
+.mnemonic-scheme-shader:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	opacity: 0.5;
+}
+
+.mnemonic-scheme-rightPanel-viewPanel-grid-field svg {
+	/*fill: #fff;*/
+	/*stroke: #000;*/
+}
+
+.mnemonic-scheme-svgWrapper-1273de .colorStroke {
+	stroke: #1273de;
+}
+
+.mnemonic-scheme-svgWrapper-ffb307 .colorStroke {
+	stroke: #ffb307;
+}
+
+.mnemonic-scheme-svgWrapper-008b02 .colorStroke {
+	stroke: #008b02;
+}
+
+.mnemonic-scheme-svgWrapper-006b76 .colorStroke {
+	stroke: #006b76;
+}
+
+.mnemonic-scheme-svgWrapper-b80000 .colorStroke {
+	stroke: #b80000;
+}
+
+.mnemonic-scheme-svgWrapper-000000 .colorStroke {
+	stroke: #000000;
+}
+
+.mnemonic-scheme-svgWrapper-1273de .colorFill {
+	fill: #1273de;
+}
+
+.mnemonic-scheme-svgWrapper-ffb307 .colorFill {
+	fill: #ffb307;
+}
+
+.mnemonic-scheme-svgWrapper-008b02 .colorFill {
+	fill: #008b02;
+}
+
+.mnemonic-scheme-svgWrapper-006b76 .colorFill {
+	fill: #006b76;
+}
+
+.mnemonic-scheme-svgWrapper-b80000 .colorFill {
+	fill: #b80000;
+}
+
+.mnemonic-scheme-svgWrapper-000000 .colorFill {
+	fill: #000000;
+}
+
+i.mnemo-scheme-transform-rotate-270 > svg,
+svg.mnemo-scheme-transform-rotate-270 {
+	transform: rotate(270deg);
+}
+
+i.mnemo-scheme-transform-rotate-180 > svg,
+svg.mnemo-scheme-transform-rotate-180 {
+	transform: rotate(180deg);
+}
+
+i.mnemo-scheme-transform-rotate-90 > svg,
+svg.mnemo-scheme-transform-rotate-90 {
+	transform: rotate(90deg);
+}
+
+i.mnemo-scheme-transform-flip-vertical > svg,
+svg.mnemo-scheme-transform-flip-vertical {
+	transform: scale(-1, 1);
+}
+
+i.mnemo-scheme-transform-flip-horizontal > svg,
+svg.mnemo-scheme-transform-flip-horizontal {
+	transform: scale(1, -1);
+}
+
+i.mnemo-scheme-transform-flip-vertical-rotate-90 > svg,
+svg.mnemo-scheme-transform-flip-vertical-rotate-90 {
+	transform: scale(-1, 1) rotate(90deg);
+}
+
+i.mnemo-scheme-transform-flip-horizontal-rotate-90 > svg,
+svg.mnemo-scheme-transform-flip-horizontal-rotate-90 {
+	transform: scale(1, -1) rotate(90deg);
+}
+
+.mnemonic-scheme-panel-icon-transform-choose + .mnemonic-scheme-panel-icon-transform-choose {
+	margin-right: 16px;
+}
+
+.mnemonic-scheme-panel-icon-transform-choose > svg {
+	height: 36px;
+	width: 36px;
+	border: 1px solid #DDDFE1;
+	padding: 3px;
+	border-radius: 2px;
+}
+
+.mnemonic-scheme-panel-icon-transform-choose.mnemonic-scheme-panel-icon-transform-choose-active > svg {
+	box-shadow: 0 0 3px #6db1db;
+}
+
+html .mnemo-editor-font-settings-block {
+	margin-top: 15px;
+}
+
+button.mnemo-editor-font-btn {
+	width: 2.5em;
+	text-align: center;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+button.mnemo-editor-font-btn + button.mnemo-editor-font-btn {
+	margin-left: 8px;
+}
+
+button.mnemo-editor-font-btn.mnemo-editor-font-btn-pressed {
+	background: #eff6f9;
+}
+
+.mnemonic-scheme-editor .mnemonic-scheme-panel-content-row-control {
+	margin-left: 8px;
+}
