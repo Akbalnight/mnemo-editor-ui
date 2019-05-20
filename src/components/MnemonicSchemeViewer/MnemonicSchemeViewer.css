@@ -1,0 +1,25 @@
+.mnemonic-scheme-viewer {
+  position: relative;
+  width: 100%;
+  border: 1px solid #dee0e2;
+  font-size: 0;
+  padding-top: calc(76 / 124 * 100%);
+  box-sizing: border-box;
+}
+
+.mnemonic-scheme-viewer * {
+  box-sizing: border-box;
+}
+
+.mnemonic-scheme-viewer__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 1px solid #DDDFE1;
+}
+
+.mnemonic-scheme-viewer__element, .mnemonic-scheme-viewer__element * {
+  vector-effect: non-scaling-stroke;
+}
