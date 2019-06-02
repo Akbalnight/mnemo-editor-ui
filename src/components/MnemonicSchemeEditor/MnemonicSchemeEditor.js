@@ -1,9 +1,11 @@
 import React from 'react'
 import $ from 'jquery'
+import PropTypes from 'prop-types'
 import Pipeline from './elements/Pipeline'
 import {equal, stop} from '../../utils'
-import {Button, Col, Icon, Row, Select, Tree, Modal, Input} from 'antd'
+import {Button, Col, Icon, Row, Select, Tree, Modal, Input, notification} from 'antd'
 import {findGroupByCode} from '../../constants'
+import {getScheme, storeScheme} from '../../utils/network'
 import PipelineConnection from './elements/PipelineConnection'
 import Text from './elements/Text'
 import PipelineCross from './elements/PipelineCross'
@@ -74,6 +76,7 @@ class MnemonicSchemeEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: !!props.id,
       mode: 'none',
       drawingFigure: null,
       elements: [],
@@ -84,6 +87,10 @@ class MnemonicSchemeEditor extends React.Component {
     this.svgRef = React.createRef()
     this.width = 124
     this.height = 76
+
+    if (props.id) {
+      this.getScheme(props.id)
+    }
   }
 
   getAvailableFigures = () => {
@@ -256,10 +263,10 @@ class MnemonicSchemeEditor extends React.Component {
 
           <Col span={10} className='mnemonic-scheme-rightPanel-topInputs-rightGroup'>
             <Button type='default' icon='close' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
-              this.testImport()/* todo:stub */
+              //this.testImport()/* todo:stub */
             }}>Отмена</Button>
             <Button type='default' icon='save' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
-              this.testExport()/* todo:stub */
+              this.storeSchemeHandler()
             }}>Сохранить мнемосхему</Button>
           </Col>
         </Row>
@@ -638,8 +645,7 @@ class MnemonicSchemeEditor extends React.Component {
   }
 
   export = () => {
-    let data = this.state.elements.map(e => this.elementFigure(e).serialize(e))
-    return JSON.stringify(data)
+    return this.state.elements.map(e => this.elementFigure(e).serialize(e))
   }
 
   import = (data) => {
@@ -647,29 +653,76 @@ class MnemonicSchemeEditor extends React.Component {
       ...this.state,
       mode: 'none',
       drawingFigure: null,
-      elements: JSON.parse(data).map(d => this.figureByCode(d.code).deserialize(d)),
+      elements: data.map(d => this.figureByCode(d.code).deserialize(d)),
       processingElements: [],
       editingElement: null,
       onMouseOverElement: null
     })
   }
 
-  // Удалить
-  testExport = () => {
-    Modal.info({content: this.export()})
+  storeScheme = (name, id) => {
+    storeScheme({
+      id,
+      name,
+      data: this.export()
+    }).catch(error => {
+      notification.error({
+        message: 'Ощибка',
+        description: error.message
+      })
+    })
   }
 
-  // Удалить
-  testImport = () => {
-    let data
+  storeSchemeHandler = () => {
+    if (this.props.id) {
+      this.storeScheme(null, this.props.id)
+      return
+    }
+    let name
+
+    const content = (
+      <div>
+        <Input
+          style={{width: '100%'}}
+          onChange={e => {
+            name = e.target.value
+          }}
+        />
+      </div>
+    )
+
     Modal.info({
-      content: <textarea style={{width: '100%'}} rows={15} onChange={(e) => data = e.target.value}
-        onMouseUp={(e) => data = e.target.value} />,
-      onOk: () => this.import(data)
+      title: 'Введите название файла',
+      content,
+      onOk: () => {
+        if (!name) {
+          Modal.warning({
+            title: 'Внимание',
+            content: 'Имя не может быть пустым'
+          })
+          return
+        }
+        this.storeScheme(name)
+      }
     })
+  }
+  getScheme = (id) => {
+    getScheme(id)
+      .catch(error => {
+        notification.error({
+          message: 'Ошибка',
+          description: error.message
+        })
+      })
+      .then(data => {
+        data && this.import(data.content)
+        this.setState({loading: false})
+      })
   }
 }
 
-MnemonicSchemeEditor.propTypes = {}
+MnemonicSchemeEditor.propTypes = {
+  id: PropTypes.number
+}
 
 export default MnemonicSchemeEditor

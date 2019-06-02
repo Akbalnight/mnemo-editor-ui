@@ -1,6 +1,6 @@
 {
   "name": "mnemo-editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -23,6 +23,13 @@
     "deploy": "gh-pages -d example/build"
   },
   "devDependencies": {
+    "antd": "^3.16.2",
+    "classnames": "^2.2.6",
+    "deep-equal": "^1.0.1",
+    "jquery": "^3.3.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
@@ -53,12 +60,12 @@
     "dist"
   ],
   "peerDependencies": {
-    "antd": "3.10.0",
-    "classnames": "2.2.6",
-    "deep-equal": "1.0.1",
-    "jquery": "3.3.1",
-    "prop-types": "15.5.4",
-    "react": "16.4.2",
-    "react-dom": "16.4.2"
+    "antd": "^3.10.0",
+    "classnames": "^2.2.6",
+    "deep-equal": "^1.0.1",
+    "jquery": "^3.3.1",
+    "prop-types": "^15.5.4",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   }
 }
