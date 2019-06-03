@@ -263,7 +263,7 @@ class MnemonicSchemeEditor extends React.Component {
 
           <Col span={10} className='mnemonic-scheme-rightPanel-topInputs-rightGroup'>
             <Button type='default' icon='close' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
-              //this.testImport()/* todo:stub */
+              this.props.onCancel && this.props.onCancel();
             }}>Отмена</Button>
             <Button type='default' icon='save' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
               this.storeSchemeHandler()
@@ -722,7 +722,8 @@ class MnemonicSchemeEditor extends React.Component {
 }
 
 MnemonicSchemeEditor.propTypes = {
-  id: PropTypes.number
+  id: PropTypes.number,
+  onCancel: PropTypes.func
 }
 
 export default MnemonicSchemeEditor
