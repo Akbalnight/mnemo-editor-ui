@@ -70,12 +70,10 @@ const MnemonicSchemeViewer = ({
   className,
   mnemoschemeData
 }) => {
-  console.log('mnemoschemeData', mnemoschemeData)
   const width = 124
   const height = 76
 
   const elements = mnemoschemeData.map(d => FIGURES.find(f => f.code() === d.code).deserialize(d))
-  console.log('elements', elements)
 
   let grid = []
   for (let i = 1; i <= width - 1; i++) {

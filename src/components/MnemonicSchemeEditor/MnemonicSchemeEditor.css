@@ -134,7 +134,8 @@
 	margin: 0 15px 15px 15px;
 	border: 1px solid #DDDFE1;
 	background-color: #e6e6e6;
-	height: 100%;
+	flex: 1 0 auto;
+	height: 0;
 	display: flex;
 	flex-direction: column;
 }
