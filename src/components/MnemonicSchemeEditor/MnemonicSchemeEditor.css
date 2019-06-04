@@ -117,8 +117,19 @@
 	margin: 20px 15px 15px 15px;
 }
 
-.mnemonic-scheme-drawingPanel-topInputs-dropdown {
-	width: calc(100% - 159px);
+.mnemonic-scheme-drawingPanel-topInputs-leftGroup {
+  display: flex;
+  align-items: center;
+}
+
+.mnemonic-scheme-drawingPanel-topInputs-name {
+	width: 0 !important;
+  margin-right: 10px !important;
+  flex: 1 0 auto;
+}
+
+.mnemonic-scheme-drawingPanel-topInputs-checkbox {
+  flex: 0 0 auto;
 }
 
 .mnemonic-scheme-rightPanel-topInputs-button {

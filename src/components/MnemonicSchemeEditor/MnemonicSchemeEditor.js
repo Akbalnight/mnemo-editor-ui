@@ -3,7 +3,7 @@ import $ from 'jquery'
 import PropTypes from 'prop-types'
 import Pipeline from './elements/Pipeline'
 import {equal, stop} from '../../utils'
-import {Button, Col, Icon, Row, Select, Tree, Modal, Input, notification} from 'antd'
+import {Button, Col, Icon, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd'
 import {findGroupByCode} from '../../constants'
 import {getScheme, storeScheme} from '../../utils/network'
 import PipelineConnection from './elements/PipelineConnection'
@@ -36,8 +36,6 @@ import HeatExchanger from './elements/HeatExchanger'
 import HeaterPanel from './elements/HeaterPanel'
 import HeaterSectioned from './elements/HeaterSectioned'
 import './MnemonicSchemeEditor.css'
-
-const InputGroup = Input.Group
 
 class MnemonicSchemeEditor extends React.Component {
   static FIGURES = [
@@ -76,6 +74,8 @@ class MnemonicSchemeEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      name: '',
+      isProduction: false,
       loading: !!props.id,
       mode: 'none',
       drawingFigure: null,
@@ -237,28 +237,37 @@ class MnemonicSchemeEditor extends React.Component {
     </Tree>
   }
 
+  nameChange = (e) => {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  typeChange = (e) => {
+    this.setState({
+      isProduction: e.target.checked
+    })
+  }
+
   renderTopPanel = () => {
     return (
       <div className='mnemonic-scheme-drawingPanel-topInputs-container'>
         <Row>
           <Col span={14}>
-            <InputGroup compact>
-              <Select
-                className='dropdown-select mnemonic-scheme-drawingPanel-topInputs-dropdown'
+            <div className='mnemonic-scheme-drawingPanel-topInputs-leftGroup'>
+              <Input
+                className='mnemonic-scheme-drawingPanel-topInputs-name'
                 placeholder='Введите название мнемосхемы'
-                // onChange={ } todo: stub value={ } todo: stub options={ } todo: stub
+                value={this.state.name}
+                onChange={this.nameChange}
               />
 
-              <Button type='default' icon='setting' className='mnemonic-scheme-rightPanel-topInputs-button'
-                onClick={() => { /* todo:stub */
-                }} />
-              <Button type='default' icon='close' className='mnemonic-scheme-rightPanel-topInputs-button'
-                onClick={() => { /* todo:stub */
-                }} />
-              <Button type='default' icon='plus' className='mnemonic-scheme-rightPanel-topInputs-button'
-                onClick={() => { /* todo:stub */
-                }} />
-            </InputGroup>
+              <Checkbox
+                className='mnemonic-scheme-drawingPanel-topInputs-checkbox'
+                checked={this.state.isProduction}
+                onChange={this.typeChange}
+              >Рабочая</Checkbox>
+            </div>
           </Col>
 
           <Col span={10} className='mnemonic-scheme-rightPanel-topInputs-rightGroup'>
@@ -660,51 +669,35 @@ class MnemonicSchemeEditor extends React.Component {
     })
   }
 
-  storeScheme = (name, id) => {
+  storeScheme = () => {
     storeScheme({
-      id,
-      name,
+      id: this.props.id,
+      name: this.state.name,
+      isProduction: this.state.isProduction,
       data: this.export()
     }).catch(error => {
       notification.error({
-        message: 'Ощибка',
+        message: 'Ошибка',
         description: error.message
+      })
+    }).then(() => {
+      notification.info({
+        message: 'Мнемосхема сохранена',
+        description: 'Мнемосхема сохранена удачно'
       })
     })
   }
 
   storeSchemeHandler = () => {
-    if (this.props.id) {
-      this.storeScheme(null, this.props.id)
+    if (!this.state.name) {
+      Modal.warning({
+        title: 'Внимание',
+        content: 'Имя не может быть пустым'
+      })
       return
     }
-    let name
 
-    const content = (
-      <div>
-        <Input
-          style={{width: '100%'}}
-          onChange={e => {
-            name = e.target.value
-          }}
-        />
-      </div>
-    )
-
-    Modal.info({
-      title: 'Введите название файла',
-      content,
-      onOk: () => {
-        if (!name) {
-          Modal.warning({
-            title: 'Внимание',
-            content: 'Имя не может быть пустым'
-          })
-          return
-        }
-        this.storeScheme(name)
-      }
-    })
+    this.storeScheme()
   }
   getScheme = (id) => {
     getScheme(id)
@@ -715,8 +708,12 @@ class MnemonicSchemeEditor extends React.Component {
         })
       })
       .then(data => {
-        data && this.import(data.content)
-        this.setState({loading: false})
+        data && this.import(data.data)
+        this.setState({
+          name: data && data.name,
+          isProduction: !!(data && data.isProduction),
+          loading: false
+        })
       })
   }
 }
