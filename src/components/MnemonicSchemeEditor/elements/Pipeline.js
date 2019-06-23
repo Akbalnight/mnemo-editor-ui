@@ -31,7 +31,7 @@ class Pipeline extends AbstractFigure {
 	canChangeColor = () => true;
 
 	defaultColor = () => {
-	  return '#b80000'
+	  return '#000000'
 	};
 
 	canBeTransformed = () => [];
