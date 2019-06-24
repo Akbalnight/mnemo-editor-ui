@@ -93,6 +93,14 @@ class MnemonicSchemeEditor extends React.Component {
     }
   }
 
+  componentDidMount() {
+    document.addEventListener('mouseup', this.nodeMoveModeOff, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mouseup', this.nodeMoveModeOff, false)
+  }
+
   getAvailableFigures = () => {
     // На случай, если не все фигуры будут доступны для конкретной мнемосхемы, можно будет фильтрануть
     return MnemonicSchemeEditor.FIGURES
@@ -146,6 +154,14 @@ class MnemonicSchemeEditor extends React.Component {
       grid.push(<line key={'grid-y-' + i} y1={i} y2={i} x1='0' x2={width} className={'mnemonic-scheme-rightPanel-viewPanel-grid-line-' + (i % 4 === 0 ? 'main' : 'additional')} />)
     }
 
+    let processingClass = (e) => {
+      if (this.state.isMoving && e === this.state.editingElement) {
+        return 'mnemonic-scheme-editor-moving-element'
+      }
+
+      return ''
+    }
+
     let elementClass = (e) => {
       if (e === this.state.editingElement) {
         return 'mnemonic-scheme-editor-highlighted-element'
@@ -164,7 +180,12 @@ class MnemonicSchemeEditor extends React.Component {
           viewBox={'0 0 ' + width + ' ' + height}
           ref={this.svgRef}
           onClick={this.state.mode === 'drawing' ? this.drawingClick : this.selectionClick}
-          onMouseMove={this.state.mode === 'drawing' ? this.drawingMove : this.selectionMove}
+          onMouseMove={
+            this.state.mode === 'drawing'
+              ? this.drawingMove
+              : this.state.isMoving
+                ? this.nodeMove
+                : this.selectionMove}
           onContextMenu={this.state.mode === 'drawing' ? this.drawingRightClick : null}
         >
           <filter id='mnemonic-scheme-editor-blur-filter' x='-5' y='-5' width={width + 5} height={height + 5}
@@ -177,9 +198,18 @@ class MnemonicSchemeEditor extends React.Component {
           </filter>
           {grid}
           {this.state.elements && this.state.elements.length
-            ? this.state.elements.map(e => <g key={e.id} className={elementClass(e)}>{e.render()}</g>) : ''}
+            ? this.state.elements.map(e => <g
+              key={e.id}
+              className={elementClass(e)}
+              onMouseDown={
+                this.state.mode !== 'drawing' &&
+                e === this.state.editingElement
+                  ? this.nodeMoveModeOn
+                  : undefined
+              }
+            >{e.render()}</g>) : ''}
           {this.state.processingElements && this.state.processingElements.length
-            ? this.state.processingElements.map(e => <g key={e.id}>{e.render()}</g>) : ''}
+            ? this.state.processingElements.map(e => <g key={e.id} className={processingClass(e)}>{e.render()}</g>) : ''}
         </svg>
       </div>
     )
@@ -284,6 +314,8 @@ class MnemonicSchemeEditor extends React.Component {
   }
 
   renderLeftPanel = () => {
+    const showAssigmentBlock = !this.state.editingElement || this.elementFigure(this.state.editingElement).measures()
+
     return (
       <div
         className={'mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel ' + ((!this.state.editingElement) ? 'mnemonic-scheme-shader' : '')}>
@@ -293,7 +325,7 @@ class MnemonicSchemeEditor extends React.Component {
 
         {this.renderDirectionBlock()}
 
-        {this.renderAssignmentBlock()}
+        {showAssigmentBlock && this.renderAssignmentBlock()}
       </div>
     )
   }
@@ -303,7 +335,14 @@ class MnemonicSchemeEditor extends React.Component {
       <div
         className={'mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel ' + ((!this.state.editingElement) ? 'mnemonic-scheme-shader' : '')}>
         <div className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-header'>
-          Инструменты
+          <div>Инструменты</div>
+          <div><Button
+            type='danger'
+            shape='circle'
+            icon='delete'
+            size='small'
+            onClick={this.removeEditingElement}
+          /></div>
         </div>
 
         {this.renderColorsBlock()}
@@ -465,6 +504,12 @@ class MnemonicSchemeEditor extends React.Component {
   }
 
   renderAssignmentBlock = () => {
+    if (!this.state.editingElement) {
+      return null
+    }
+
+    const measures = this.elementFigure(this.state.editingElement).measures()
+
     return (
       <Row className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row'>
         <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-titleColumn'>
@@ -472,17 +517,17 @@ class MnemonicSchemeEditor extends React.Component {
         </Col>
 
         <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn'>
-          <Button type='default' icon='delete' onClick={this.removeEditingElement}
-            className='mnemonic-scheme-panel-content-row-control'>Удалить элемент</Button>
-
-          <Select value={this.state.editingElement && this.state.editingElement.labelText
-            ? this.state.editingElement.labelText : 'М7, т'} onChange={(value) => {
-            let newState = {...this.state}
-            newState.editingElement.setLabelText(value)
-            this.setState(newState)
-          }}>
-            <Select.Option value={'М7, т'}>М7, т</Select.Option>
-            <Select.Option value={'М13, т'}>М13, т</Select.Option>
+          <Select
+            value={this.state.editingElement && this.state.editingElement.labelText
+              ? this.state.editingElement.labelText : measures[0]}
+            style={{width: '150px'}}
+            onChange={(value) => {
+              let newState = {...this.state}
+              newState.editingElement.setLabelText(value)
+              this.setState(newState)
+            }}
+          >
+            {measures.map(value => <Select.Option key={value} value={value}>{value}</Select.Option>)}
           </Select>
         </Col>
       </Row>
@@ -579,6 +624,57 @@ class MnemonicSchemeEditor extends React.Component {
       this.setState(newState)
     }
   }
+
+  nodeMove = (event) => {
+    const coords = this.coordinates(event)
+    const newState = {...this.state}
+
+    const figure = this.elementFigure(this.state.editingElement);
+
+    newState.processingElements = figure.onMove(coords.x, coords.y, this.width, this.height,
+      this.state.elements, this.state.processingElements)
+    this.setState(newState)
+  }
+
+  /**
+   * Управление режимом перемещения объектов
+   */
+  nodeMoveMode = (value) => (event) => {
+    if (
+      event.button === 0 &&
+      this.state.mode !== 'drawing' &&
+      this.state.editingElement &&
+      this.state.editingElement.code() !== 'Pipeline'
+    ) {
+      if (value) {
+        this.setState({
+          processingElements: [this.state.editingElement],
+          isMoving: true,
+          oldPosition: this.state.editingElement.position
+        })
+      } else {
+        const coords = this.coordinates(event)
+        const figure = this.elementFigure(this.state.editingElement)
+        const result = figure.onClick(coords.x, coords.y, this.width, this.height, false,
+          this.state.elements, this.state.processingElements)
+
+        if ((result === null || (result.added && result.added.length === 0)) && this.state.oldPosition) {
+          this.state.editingElement.setPosition(this.state.oldPosition.x, this.state.oldPosition.y)
+          figure.onClick(this.state.oldPosition.x, this.state.oldPosition.y, this.width, this.height, false,
+            this.state.elements, this.state.processingElements)
+        }
+
+        this.setState({
+          processingElements: [],
+          isMoving: false,
+          oldPosition: undefined
+        })
+      }
+    }
+  }
+
+  nodeMoveModeOn = this.nodeMoveMode(true)
+  nodeMoveModeOff = this.nodeMoveMode(false)
 
   /**
    * Клик в режиме просмотра нарисованных элементов

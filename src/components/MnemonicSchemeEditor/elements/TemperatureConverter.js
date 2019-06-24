@@ -35,6 +35,15 @@ class TemperatureConverter extends AbstractSimpleFigure {
     [{rotate: 180}],
     [{rotate: 270}]
   ];
+
+  measures = () => [
+    't1, гр.C',
+    't2, гр.C',
+    't3, гр.C',
+    't4, гр.C',
+    't7, гр.C',
+    't13, гр.C'
+  ]
 }
 
 export default TemperatureConverter

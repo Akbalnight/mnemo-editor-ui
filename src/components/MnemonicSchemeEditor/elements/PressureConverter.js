@@ -11,7 +11,7 @@ class PressureConverter extends AbstractSimpleFigure {
   };
 
   name = () => {
-    return 'Преобразователь давления '
+    return 'Преобразователь давления'
   };
 
   image = () => {
@@ -35,6 +35,21 @@ class PressureConverter extends AbstractSimpleFigure {
     [{rotate: 180}],
     [{rotate: 270}]
   ];
+
+  measures = () => [
+    'P1, МПа',
+    'P2, МПа',
+    'P3, МПа',
+    'P4, МПа',
+    'P7, МПа',
+    'P13, МПа',
+    'P1, ат',
+    'P2, ат',
+    'P3, ат',
+    'P4, ат',
+    'P7, ат',
+    'P13, ат'
+  ]
 }
 
 export default PressureConverter

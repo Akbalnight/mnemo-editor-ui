@@ -35,6 +35,10 @@ class HeatAmountDetector extends AbstractSimpleFigure {
     [{rotate: 180}],
     [{rotate: 270}]
   ];
+
+  measures = () => [
+    'Q, Гкал'
+  ]
 }
 
 export default HeatAmountDetector

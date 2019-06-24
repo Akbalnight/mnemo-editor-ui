@@ -5,6 +5,8 @@ class AbstractFigure {
 	generateId = () => {
 	  return Math.random().toString().replace('0.', '')
 	}
+
+	measures = () => null
 }
 
 export default AbstractFigure

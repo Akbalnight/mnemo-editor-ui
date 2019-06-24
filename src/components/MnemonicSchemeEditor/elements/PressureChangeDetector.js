@@ -35,6 +35,11 @@ class PressureChangeDetector extends AbstractSimpleFigure {
     [{rotate: 180}],
     [{rotate: 270}]
   ];
+
+  measures = () => [
+    '𝚫P, МПа',
+    '𝚫P, ат'
+  ]
 }
 
 export default PressureChangeDetector
