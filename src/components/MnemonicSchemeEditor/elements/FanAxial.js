@@ -1,4 +1,4 @@
-import fanAxial, {ReactComponent as fanAxialSvg} from '.../../../assets/images/FanAxial.svg'
+import fanAxial, {ReactComponent as fanAxialSvg} from '../../../assets/images/FanAxial.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class FanAxial extends AbstractSimpleFigure {

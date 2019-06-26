@@ -1,4 +1,4 @@
-import pipelineConnection, {ReactComponent as pipelineConnectionSvg} from '.../../../assets/images/PipelineConnection.svg'
+import pipelineConnection, {ReactComponent as pipelineConnectionSvg} from '../../../assets/images/PipelineConnection.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PipelineConnection extends AbstractSimpleFigure {

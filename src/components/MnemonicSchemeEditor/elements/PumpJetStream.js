@@ -1,4 +1,4 @@
-import pumpJetStream, {ReactComponent as pumpJetStreamSvg} from '.../../../assets/images/PumpJetStream.svg'
+import pumpJetStream, {ReactComponent as pumpJetStreamSvg} from '../../../assets/images/PumpJetStream.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PumpJetStream extends AbstractSimpleFigure {

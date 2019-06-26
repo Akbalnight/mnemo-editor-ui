@@ -1,4 +1,4 @@
-import flowMeter, {ReactComponent as flowMeterSvg} from '.../../../assets/images/FlowMeter.svg'
+import flowMeter, {ReactComponent as flowMeterSvg} from '../../../assets/images/FlowMeter.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class FlowMeter extends AbstractSimpleFigure {

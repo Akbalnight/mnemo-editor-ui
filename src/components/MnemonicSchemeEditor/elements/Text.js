@@ -1,4 +1,4 @@
-import text, {ReactComponent as textSvg} from '.../../../assets/images/Text.svg'
+import text, {ReactComponent as textSvg} from '../../../assets/images/Text.svg'
 import React from 'react'
 import AbstractFigure from './AbstractFigure'
 import {Input, Modal, Radio, Button} from 'antd'

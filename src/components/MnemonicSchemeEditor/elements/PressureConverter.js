@@ -1,4 +1,4 @@
-import pressureConverter, {ReactComponent as pressureConverterSvg} from '.../../../assets/images/PressureConverter.svg'
+import pressureConverter, {ReactComponent as pressureConverterSvg} from '../../../assets/images/PressureConverter.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PressureConverter extends AbstractSimpleFigure {

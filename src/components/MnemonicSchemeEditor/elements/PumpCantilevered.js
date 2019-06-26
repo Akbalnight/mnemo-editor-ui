@@ -1,4 +1,4 @@
-import pumpCantilevered, {ReactComponent as pumpCantileveredSvg} from '.../../../assets/images/PumpCantilevered.svg'
+import pumpCantilevered, {ReactComponent as pumpCantileveredSvg} from '../../../assets/images/PumpCantilevered.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PumpCantilevered extends AbstractSimpleFigure {

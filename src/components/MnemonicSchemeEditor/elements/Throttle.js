@@ -1,4 +1,4 @@
-import throttle, {ReactComponent as throttleSvg} from '.../../../assets/images/Throttle.svg'
+import throttle, {ReactComponent as throttleSvg} from '../../../assets/images/Throttle.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class Throttle extends AbstractSimpleFigure {

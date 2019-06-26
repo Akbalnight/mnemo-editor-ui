@@ -1,4 +1,4 @@
-import valveAdjuster, {ReactComponent as valveAdjusterSvg} from '.../../../assets/images/ValveAdjuster.svg'
+import valveAdjuster, {ReactComponent as valveAdjusterSvg} from '../../../assets/images/ValveAdjuster.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class ValveAdjuster extends AbstractSimpleFigure {
