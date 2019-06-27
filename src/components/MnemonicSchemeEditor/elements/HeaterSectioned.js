@@ -1,4 +1,4 @@
-import heaterSectioned, {ReactComponent as heaterSectionedSvg} from '.../../../assets/images/HeaterSectioned.svg'
+import heaterSectioned, {ReactComponent as heaterSectionedSvg} from '../../../assets/images/HeaterSectioned.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class HeaterSectioned extends AbstractSimpleFigure {

@@ -1,4 +1,4 @@
-import pumpCircular, {ReactComponent as pumpCircularSvg} from '.../../../assets/images/PumpCircular.svg'
+import pumpCircular, {ReactComponent as pumpCircularSvg} from '../../../assets/images/PumpCircular.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PumpCircular extends AbstractSimpleFigure {

@@ -1,4 +1,4 @@
-import flowMeterUltrasound, {ReactComponent as flowMeterUltrasoundSvg} from '.../../../assets/images/FlowMeterUltrasound.svg'
+import flowMeterUltrasound, {ReactComponent as flowMeterUltrasoundSvg} from '../../../assets/images/FlowMeterUltrasound.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class FlowMeterUltrasound extends AbstractSimpleFigure {

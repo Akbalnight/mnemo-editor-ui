@@ -1,4 +1,4 @@
-import valveLockAngular, {ReactComponent as valveLockAngularSvg} from '.../../../assets/images/ValveLockAngular.svg'
+import valveLockAngular, {ReactComponent as valveLockAngularSvg} from '../../../assets/images/ValveLockAngular.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class ValveLockAngular extends AbstractSimpleFigure {

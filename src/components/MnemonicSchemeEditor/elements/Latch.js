@@ -1,4 +1,4 @@
-import latch, {ReactComponent as latchSvg} from '.../../../assets/images/Latch.svg'
+import latch, {ReactComponent as latchSvg} from '../../../assets/images/Latch.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class Latch extends AbstractSimpleFigure {

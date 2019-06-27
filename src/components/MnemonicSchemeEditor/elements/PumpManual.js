@@ -1,4 +1,4 @@
-import pumpManual, {ReactComponent as pumpManualSvg} from '.../../../assets/images/PumpManual.svg'
+import pumpManual, {ReactComponent as pumpManualSvg} from '../../../assets/images/PumpManual.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PumpManual extends AbstractSimpleFigure {

@@ -60,7 +60,8 @@ class AbstractSimpleFigure extends AbstractFigure {
         width: this.width(),
         height: this.height(),
         color: this.defaultColor(),
-        measures: this.measures()
+        measures: this.measures(),
+        measureKey: this.measureKey
       })
     }
   };
@@ -99,7 +100,7 @@ class AbstractSimpleFigure extends AbstractFigure {
 
   serialize = (e) => {
     let data = {code: e.codeId, x: e.position.x, y: e.position.y};
-    ['id', 'color', 'transformation', 'labelText'].forEach(attr => data[attr] = e[attr])
+    ['id', 'color', 'transformation', 'labelText', 'measureKey'].forEach(attr => void (data[attr] = e[attr]))
     return data
   };
 
@@ -111,7 +112,8 @@ class AbstractSimpleFigure extends AbstractFigure {
       width: this.width(),
       height: this.height(),
       color: data.color,
-      measures: this.measures()
+      measures: this.measures(),
+      measureKey: data.measureKey
     })
     instance.setPosition(data.x, data.y)
     instance.setTransformation(data.transformation)
@@ -133,6 +135,8 @@ class SimpleFigureInstance {
     height,
     color,
     measures,
+    measureKey,
+    measureValue,
     canBeMounted = true
   }) {
     this.id = id
@@ -143,6 +147,8 @@ class SimpleFigureInstance {
     this.width = width
     this.height = height
     this.isMeasure = !!measures
+    this.measureKey = measureKey
+    this.measureValue = measureValue || ''
     this.canBeMounted = canBeMounted
     this.transformation = null
     this.labelText = measures && measures[0]
@@ -157,6 +163,7 @@ class SimpleFigureInstance {
         width={this.width}
         height={this.height}
         isMeasure={this.isMeasure}
+        measureValue={this.measureValue}
         canBeMounted={this.canBeMounted}
         transformation={this.transformation}
         labelText={this.labelText} />
@@ -182,6 +189,15 @@ class SimpleFigureInstance {
   setLabelText = (labelText) => {
     this.labelText = labelText
   };
+
+  setMeasureKey = (key) => {
+    this.measureKey = key
+  }
+
+  setMeasureValue = (key) => {
+    this.measureValue = key
+  }
+
 
   containsPoint = (x, y) => {
     let fx = this.position.x
@@ -269,6 +285,8 @@ class SimpleFigureElement extends React.Component {
           }} />}
         {this.props.isMeasure && <text x={0} y={offsetY + 2.5} textAnchor='middle'
           style={{'fill': '#000000', fontSize: '1.5px'}}>{this.props.labelText}</text>}
+        {this.props.isMeasure && <text x={0} y={offsetY + 6} textAnchor='middle'
+          style={{'fill': '#000000', fontSize: '1.5px'}}>{this.props.measureValue}</text>}
       </g>
     )
   };

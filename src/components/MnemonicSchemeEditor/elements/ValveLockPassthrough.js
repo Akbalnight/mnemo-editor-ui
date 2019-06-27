@@ -1,4 +1,4 @@
-import valveLockPassthrough, {ReactComponent as valveLockPassthroughSvg} from '.../../../assets/images/ValveLockPassthrough.svg'
+import valveLockPassthrough, {ReactComponent as valveLockPassthroughSvg} from '../../../assets/images/ValveLockPassthrough.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class ValveLockPassthrough extends AbstractSimpleFigure {

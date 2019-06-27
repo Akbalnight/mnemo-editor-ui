@@ -1,4 +1,4 @@
-import flowDirectionGas, {ReactComponent as flowDirectionGasSvg} from '.../../../assets/images/FlowDirectionGas.svg'
+import flowDirectionGas, {ReactComponent as flowDirectionGasSvg} from '../../../assets/images/FlowDirectionGas.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class FlowDirectionGas extends AbstractSimpleFigure {

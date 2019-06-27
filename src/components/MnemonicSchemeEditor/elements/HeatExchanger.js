@@ -1,4 +1,4 @@
-import heatExchanger, {ReactComponent as heatExchangerSvg} from '.../../../assets/images/HeatExchanger.svg'
+import heatExchanger, {ReactComponent as heatExchangerSvg} from '../../../assets/images/HeatExchanger.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class HeatExchanger extends AbstractSimpleFigure {

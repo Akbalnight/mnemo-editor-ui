@@ -1,4 +1,4 @@
-import pumpNonAdjustableReverse, {ReactComponent as pumpNonAdjustableReverseSvg} from '.../../../assets/images/PumpNonAdjustableReverse.svg'
+import pumpNonAdjustableReverse, {ReactComponent as pumpNonAdjustableReverseSvg} from '../../../assets/images/PumpNonAdjustableReverse.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PumpNonAdjustableReverse extends AbstractSimpleFigure {

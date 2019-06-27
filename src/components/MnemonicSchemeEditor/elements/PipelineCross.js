@@ -1,4 +1,4 @@
-import pipelineCross, {ReactComponent as pipelineCrossSvg} from '.../../../assets/images/PipelineCross.svg'
+import pipelineCross, {ReactComponent as pipelineCrossSvg} from '../../../assets/images/PipelineCross.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PipelineCross extends AbstractSimpleFigure {

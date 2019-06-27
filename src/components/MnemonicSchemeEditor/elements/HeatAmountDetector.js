@@ -1,4 +1,4 @@
-import heatAmountDetector, {ReactComponent as heatAmountDetectorSvg} from '.../../../assets/images/HeatAmountDetector.svg'
+import heatAmountDetector, {ReactComponent as heatAmountDetectorSvg} from '../../../assets/images/HeatAmountDetector.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class HeatAmountDetector extends AbstractSimpleFigure {

@@ -512,15 +512,29 @@ class MnemonicSchemeEditor extends React.Component {
 
     return (
       <Row className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row'>
-        <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-titleColumn'>
+        <Col span={8} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-titleColumn'>
           Контролируемые параметры
         </Col>
 
-        <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn'>
+        <Col span={8} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn'
+          style={{paddingRight: 10}}>
+          <Input
+            placeholder='Имя'
+            style={{width: '100%'}}
+            value={(this.state.editingElement && this.state.editingElement.measureKey) || ''}
+            onChange={(event) => {
+              let newState = {...this.state}
+              newState.editingElement.setMeasureKey(event.target.value)
+              this.setState(newState)
+            }}
+          />
+        </Col>
+
+        <Col span={8} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn'>
           <Select
             value={this.state.editingElement && this.state.editingElement.labelText
               ? this.state.editingElement.labelText : measures[0]}
-            style={{width: '150px'}}
+            style={{width: '100%'}}
             onChange={(value) => {
               let newState = {...this.state}
               newState.editingElement.setLabelText(value)

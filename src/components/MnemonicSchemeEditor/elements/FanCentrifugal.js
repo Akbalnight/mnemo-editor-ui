@@ -1,4 +1,4 @@
-import fanCentrifugal, {ReactComponent as fanCentrifugalSvg} from '.../../../assets/images/FanCentrifugal.svg'
+import fanCentrifugal, {ReactComponent as fanCentrifugalSvg} from '../../../assets/images/FanCentrifugal.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class FanCentrifugal extends AbstractSimpleFigure {

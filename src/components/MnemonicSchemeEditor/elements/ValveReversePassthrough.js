@@ -1,4 +1,4 @@
-import valveReversePassthrough, {ReactComponent as valveReversePassthroughSvg} from '.../../../assets/images/ValveReversePassthrough.svg'
+import valveReversePassthrough, {ReactComponent as valveReversePassthroughSvg} from '../../../assets/images/ValveReversePassthrough.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class ValveReversePassthrough extends AbstractSimpleFigure {

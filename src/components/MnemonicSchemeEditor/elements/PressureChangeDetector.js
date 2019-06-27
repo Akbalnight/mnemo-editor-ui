@@ -1,4 +1,4 @@
-import pressureChangeDetector, {ReactComponent as pressureChangeDetectorSvg} from '.../../../assets/images/PressureChangeDetector.svg'
+import pressureChangeDetector, {ReactComponent as pressureChangeDetectorSvg} from '../../../assets/images/PressureChangeDetector.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class PressureChangeDetector extends AbstractSimpleFigure {

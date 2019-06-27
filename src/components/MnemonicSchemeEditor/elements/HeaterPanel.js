@@ -1,4 +1,4 @@
-import heaterPanel, {ReactComponent as heaterPanelSvg} from '.../../../assets/images/HeaterPanel.svg'
+import heaterPanel, {ReactComponent as heaterPanelSvg} from '../../../assets/images/HeaterPanel.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class HeaterPanel extends AbstractSimpleFigure {

@@ -1,4 +1,4 @@
-import temperatureConverter, {ReactComponent as temperatureConverterSvg} from '.../../../assets/images/TemperatureConverter.svg'
+import temperatureConverter, {ReactComponent as temperatureConverterSvg} from '../../../assets/images/TemperatureConverter.svg'
 import AbstractSimpleFigure from './AbstractSimpleFigure'
 
 class TemperatureConverter extends AbstractSimpleFigure {
