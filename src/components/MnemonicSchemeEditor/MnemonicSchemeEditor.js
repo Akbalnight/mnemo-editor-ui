@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import PropTypes from 'prop-types'
 import Pipeline from './elements/Pipeline'
 import {equal, stop} from '../../utils'
@@ -741,10 +740,17 @@ class MnemonicSchemeEditor extends React.Component {
    * Преобразование мышиных координат события в координаты на сетке
    */
   coordinates = (event, rounded = true) => {
-    let $element = $(this.svgRef.current)
-    let offset = $element.offset()
-    let x = (event.clientX - offset.left) * this.width / $element.width()
-    let y = (event.clientY - offset.top) * this.height / $element.height()
+    let svg = this.svgRef.current
+    let rect = svg.getBoundingClientRect()
+    let svgWidth = rect.width - 2
+    let svgHeight = rect.height - 2
+    let offset = {
+      top: rect.top + document.body.scrollTop,
+      left: rect.left + document.body.scrollLeft
+    }
+
+    let x = (event.clientX - offset.left) * this.width / svgWidth
+    let y = (event.clientY - offset.top) * this.height / svgHeight
     if (rounded) {
       x = Math.round(x)
       y = Math.round(y)
