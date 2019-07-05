@@ -302,7 +302,7 @@ class MnemonicSchemeEditor extends React.Component {
 
           <Col span={10} className='mnemonic-scheme-rightPanel-topInputs-rightGroup'>
             <Button type='default' icon='close' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
-              this.props.onCancel && this.props.onCancel();
+              this.props.onCancel && this.props.onCancel()
             }}>Отмена</Button>
             <Button type='default' icon='save' className='mnemonic-scheme-rightPanel-topInputs-button' onClick={() => {
               this.storeSchemeHandler()
@@ -315,6 +315,7 @@ class MnemonicSchemeEditor extends React.Component {
 
   renderLeftPanel = () => {
     const showAssigmentBlock = !this.state.editingElement || this.elementFigure(this.state.editingElement).measures()
+    const showTextEditingBlock = this.state.editingElement && this.state.editingElement.code() === 'Text'
 
     return (
       <div
@@ -326,6 +327,7 @@ class MnemonicSchemeEditor extends React.Component {
         {this.renderDirectionBlock()}
 
         {showAssigmentBlock && this.renderAssignmentBlock()}
+        {showTextEditingBlock && this.renderTextEditingBlock()}
       </div>
     )
   }
@@ -501,6 +503,28 @@ class MnemonicSchemeEditor extends React.Component {
         {fontPanel}
       </Col>
     </Row>
+  }
+
+  renderTextEditingBlock = () => {
+    return (
+      <Row className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row'>
+        <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-titleColumn'>
+          Текст
+        </Col>
+        <Col span={12} className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-panel-content-row-contentColumn'>
+          <Input
+            placeholder='Текст'
+            style={{width: '100%'}}
+            value={(this.state.editingElement && this.state.editingElement.text) || ''}
+            onChange={(event) => {
+              let newState = {...this.state}
+              newState.editingElement.setText(event.target.value)
+              this.setState(newState)
+            }}
+          />
+        </Col>
+      </Row>
+    )
   }
 
   renderAssignmentBlock = () => {

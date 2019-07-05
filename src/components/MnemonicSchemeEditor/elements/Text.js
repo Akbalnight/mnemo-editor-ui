@@ -62,7 +62,7 @@ class Text extends AbstractFigure {
     }
 
     let element = processingElements[0]
-    element.setPosition(x, y)
+    element && element.setPosition(x, y)
 
     return {added: [element], processing: [], done: true}
   };
@@ -151,6 +151,10 @@ class TextInstance {
 
   setPosition = (x, y) => {
     this.position = {x, y}
+  };
+
+  setText = (text) => {
+    this.text = text
   };
 
   containsPoint = (x, y) => {
