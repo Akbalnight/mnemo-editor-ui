@@ -1,14 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.7 21.7">
-    <defs>
-        <style>.colorStroke{stroke:black;}</style>
-        <style>.colorFill{fill:black;}</style>
-    </defs>
-    <title>Термопреобразователь</title>
-    <g id="Layer_2" data-name="Layer 2">
-        <circle style="fill:white" id="path3797" cx="10.85" cy="10.85" r="10.375" />
-    </g>
-    <g id="Layer_1-2" data-name="Layer 1">
-        <path class="colorFill" d="M10.85,1A9.85,9.85,0,1,1,1,10.85,9.86,9.86,0,0,1,10.85,1m0-1A10.85,10.85,0,1,0,21.7,10.85,10.85,10.85,0,0,0,10.85,0Z"/>
-        <path class="colorFill" d="M10.57,14.79V9.18H8.65V8.49h4.61v.69H11.35v5.61Z"/>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 19.8 25.1" style="enable-background:new 0 0 19.8 25.1;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<g>
+	<circle class="st0" cx="10" cy="10" r="9.5"/>
+	<path d="M20,10c0-5.5-4.5-10-10-10C4.5,0,0,4.5,0,10c0,5.4,4.3,9.8,9.7,10v5.1h0.9V20C15.8,19.7,20,15.3,20,10z M10,19.1
+		c-5,0-9.1-4.1-9.1-9.1C0.9,5,5,0.9,10,0.9c5,0,9.1,4.1,9.1,9.1S15,19.1,10,19.1z"/>
+</g>
+<title>Термопреобразователь</title>
+<path d="M9.7,13.6V8.5H8V7.8h4.2v0.6h-1.8v5.2L9.7,13.6z"/>
 </svg>
