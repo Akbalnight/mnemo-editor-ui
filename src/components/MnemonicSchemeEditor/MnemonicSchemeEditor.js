@@ -739,7 +739,7 @@ class MnemonicSchemeEditor extends React.Component {
    */
   changeEditElementTransformation = (transformation) => {
     let newState = {...this.state}
-    newState.editingElement.setTransformation(transformation)
+    newState.editingElement.setTransformation(transformation, true)
     this.setState(newState)
   }
 

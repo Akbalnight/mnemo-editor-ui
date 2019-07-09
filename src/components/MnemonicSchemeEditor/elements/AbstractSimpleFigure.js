@@ -226,7 +226,84 @@ class SimpleFigureInstance {
     this.color = color
   };
 
-  setTransformation = (transformation) => {
+  setTransformation = (transformation, fixPosition) => { // TODO: refactor it (В rotate можно указать координаты точки, вокруг которой вращать)
+    const prevRotation = this.transformation && this.transformation.length ? this.transformation[0].rotate : null
+    const newRotation = transformation && transformation.length ? transformation[0].rotate : null
+    let offsetX = Math.round(this.width / 2)
+    let offsetY = Math.round(this.height / 2)
+
+    if (fixPosition && SimpleFigureInstance.isElementMeter(this.codeId) && (prevRotation || newRotation)) {
+      switch (prevRotation) {
+        case 90: {
+          switch (newRotation) {
+            case 180: {
+              this.setPosition(this.position.x - offsetX, this.position.y + offsetY)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - this.height, this.position.y)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x - offsetX, this.position.y - offsetY)
+              break
+            }
+          }
+          break
+        }
+        case 180: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + offsetY, this.position.y - offsetX)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - offsetY, this.position.y - offsetX)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x, this.position.y - this.height)
+              break
+            }
+          }
+          break
+        }
+        case 270: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + this.height, this.position.y)
+              break
+            }
+            case 180: {
+              this.setPosition(this.position.x + offsetX, this.position.y + offsetY)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x + offsetX, this.position.y - offsetY)
+              break
+            }
+          }
+          break
+        }
+        default: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + offsetY, this.position.y + offsetX)
+              break
+            }
+            case 180: {
+              this.setPosition(this.position.x, this.position.y + this.height)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - offsetY, this.position.y + offsetX)
+              break
+            }
+          }
+        }
+      }
+    }
+
     this.transformation = transformation
   };
 
