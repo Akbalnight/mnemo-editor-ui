@@ -69,23 +69,24 @@ class AbstractSimpleFigure extends AbstractFigure {
 
   mountPosition = (element, x, y) => {
     if (SimpleFigureInstance.isElementMeter(element.code())) {
-      let rotation = !element.transformation || !element.transformation.length ? null : element.transformation[0].rotate
+      const rotation = !element.transformation || !element.transformation.length ? null : element.transformation[0].rotate
+      const offsetY = Math.round(element.height / 2)
 
       switch (rotation) {
         case 90: {
-          x = x - 2
+          x = x - offsetY
           break
         }
         case 180: {
-          y = y - 2
+          y = y - offsetY
           break
         }
         case 270: {
-          x = x + 2
+          x = x + offsetY
           break
         }
         default: {
-          y = y + 2
+          y = y + offsetY
           break
         }
       }
@@ -120,7 +121,7 @@ class AbstractSimpleFigure extends AbstractFigure {
    * Можно ли установить данную фигуру на текущее место (под ней есть трубопровод и она ни с кем не пересекается)
    */
   canBeMounted = (currentElements, element, fixedX, fixedY) => {
-    let {x, y} = this.mountPosition(element, fixedX, fixedY)
+    const {x, y} = this.mountPosition(element, fixedX, fixedY)
     return currentElements.filter(e => e.code() === 'Pipeline').some(p => p.containsPoint(x, y)) &&
       currentElements.filter(e => e.code() !== 'Pipeline' && e.id !== element.id).every(f => !f.figuresIntersects(element))
   };
@@ -412,7 +413,7 @@ class SimpleFigureElement extends React.Component {
             'strokeWidth': '1',
             'fillOpacity': '1',
             'strokeOpacity': '0.9'
-          }} /> }
+          }} />}
         {this.props.isMeasure && <rect width={7} height={3} x={measureBlockX} y={measureBlockY}
           style={{
             'fill': '#EFF6F9',
