@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AbstractFigure from './AbstractFigure'
 
 class AbstractSimpleFigure extends AbstractFigure {
@@ -66,6 +67,34 @@ class AbstractSimpleFigure extends AbstractFigure {
     }
   };
 
+  mountPosition = (element, x, y) => {
+    if (SimpleFigureInstance.isElementMeter(element.code())) {
+      const rotation = !element.transformation || !element.transformation.length ? null : element.transformation[0].rotate
+      const offsetY = Math.round(element.height / 2)
+
+      switch (rotation) {
+        case 90: {
+          x = x - offsetY
+          break
+        }
+        case 180: {
+          y = y - offsetY
+          break
+        }
+        case 270: {
+          x = x + offsetY
+          break
+        }
+        default: {
+          y = y + offsetY
+          break
+        }
+      }
+    }
+
+    return {x, y}
+  }
+
   /**
    * Поправка координат на центр фигуры или то место, которым она монтируется
    */
@@ -92,7 +121,8 @@ class AbstractSimpleFigure extends AbstractFigure {
    * Можно ли установить данную фигуру на текущее место (под ней есть трубопровод и она ни с кем не пересекается)
    */
   canBeMounted = (currentElements, element, fixedX, fixedY) => {
-    return currentElements.filter(e => e.code() === 'Pipeline').some(p => p.containsPoint(fixedX, fixedY)) &&
+    const {x, y} = this.mountPosition(element, fixedX, fixedY)
+    return currentElements.filter(e => e.code() === 'Pipeline').some(p => p.containsPoint(x, y)) &&
       currentElements.filter(e => e.code() !== 'Pipeline' && e.id !== element.id).every(f => !f.figuresIntersects(element))
   };
 
@@ -163,12 +193,26 @@ class SimpleFigureInstance {
         width={this.width}
         height={this.height}
         isMeasure={this.isMeasure}
+        isMeter={SimpleFigureInstance.isElementMeter(this.codeId)}
         measureValue={this.measureValue}
         canBeMounted={this.canBeMounted}
         transformation={this.transformation}
         labelText={this.labelText} />
-    );
+    )
   };
+
+  /**
+   * Входит ли фигура в число тех, которые стоят на ножке
+   * HeatAmountDetector, PressureChangeDetector, PressureConverter, TemperatureConverter
+   */
+  static isElementMeter = (code) => {
+    return [
+      'HeatAmountDetector',
+      'PressureChangeDetector',
+      'PressureConverter',
+      'TemperatureConverter'
+    ].includes(code)
+  }
 
   setPosition = (x, y) => {
     this.position = {x, y}
@@ -182,7 +226,84 @@ class SimpleFigureInstance {
     this.color = color
   };
 
-  setTransformation = (transformation) => {
+  setTransformation = (transformation, fixPosition) => { // TODO: refactor it (В rotate можно указать координаты точки, вокруг которой вращать)
+    const prevRotation = this.transformation && this.transformation.length ? this.transformation[0].rotate : null
+    const newRotation = transformation && transformation.length ? transformation[0].rotate : null
+    let offsetX = Math.round(this.width / 2)
+    let offsetY = Math.round(this.height / 2)
+
+    if (fixPosition && SimpleFigureInstance.isElementMeter(this.codeId) && (prevRotation || newRotation)) {
+      switch (prevRotation) {
+        case 90: {
+          switch (newRotation) {
+            case 180: {
+              this.setPosition(this.position.x - offsetX, this.position.y + offsetY)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - this.height, this.position.y)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x - offsetX, this.position.y - offsetY)
+              break
+            }
+          }
+          break
+        }
+        case 180: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + offsetY, this.position.y - offsetX)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - offsetY, this.position.y - offsetX)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x, this.position.y - this.height)
+              break
+            }
+          }
+          break
+        }
+        case 270: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + this.height, this.position.y)
+              break
+            }
+            case 180: {
+              this.setPosition(this.position.x + offsetX, this.position.y + offsetY)
+              break
+            }
+            case null: {
+              this.setPosition(this.position.x + offsetX, this.position.y - offsetY)
+              break
+            }
+          }
+          break
+        }
+        default: {
+          switch (newRotation) {
+            case 90: {
+              this.setPosition(this.position.x + offsetY, this.position.y + offsetX)
+              break
+            }
+            case 180: {
+              this.setPosition(this.position.x, this.position.y + this.height)
+              break
+            }
+            case 270: {
+              this.setPosition(this.position.x - offsetY, this.position.y + offsetX)
+              break
+            }
+          }
+        }
+      }
+    }
+
     this.transformation = transformation
   };
 
@@ -197,7 +318,6 @@ class SimpleFigureInstance {
   setMeasureValue = (key) => {
     this.measureValue = key
   }
-
 
   containsPoint = (x, y) => {
     let fx = this.position.x
@@ -222,7 +342,103 @@ class SimpleFigureInstance {
 }
 
 class SimpleFigureElement extends React.Component {
+  static propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
+    transformation: PropTypes.array,
+    position: PropTypes.object,
+    color: PropTypes.string,
+    image: PropTypes.func,
+    canBeMounted: PropTypes.bool,
+    isMeasure: PropTypes.bool,
+    isMeter: PropTypes.bool,
+    labelText: PropTypes.string,
+    measureValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
+
+  getMeasureBlockOffset = () => {
+    const {transformation, width, height, isMeter} = this.props
+    const rotation = !transformation || !transformation.length ? null : transformation[0].rotate
+    const offsetX = Math.round(width / 2)
+    const offsetY = Math.round(height / 2)
+    let measureBlockX
+    let measureBlockY
+    let label = {}
+    let content = {}
+
+    switch (rotation) {
+      case 90: {
+        if (isMeter) {
+          measureBlockX = -offsetY - 10
+          measureBlockY = -offsetX - 1.5
+        } else {
+          measureBlockX = -offsetY - 8
+          measureBlockY = -offsetX - 1.5
+        }
+
+        label.x = measureBlockX + 3.5
+        label.y = measureBlockY + 2
+        content.x = measureBlockX + 3.5
+        content.y = measureBlockY + 5.5
+        break
+      }
+      case 180: {
+        if (isMeter) {
+          measureBlockX = -offsetX - 1.5
+          measureBlockY = -offsetY - 10
+        } else {
+          measureBlockX = -offsetX - 1.5
+          measureBlockY = -offsetY - 8
+        }
+
+        label.x = 0
+        label.y = measureBlockY + 2
+        content.x = 0
+        content.y = measureBlockY + 5.5
+        break
+      }
+      case 270: {
+        if (isMeter) {
+          measureBlockX = offsetX + 3
+          measureBlockY = -offsetY - 1.5
+        } else {
+          measureBlockX = offsetX + 1
+          measureBlockY = -offsetY - 1.5
+        }
+
+        label.x = measureBlockX + 3.5
+        label.y = measureBlockY + 2
+        content.x = measureBlockX + 3.5
+        content.y = measureBlockY + 5.5
+        break
+      }
+      default: {
+        if (isMeter) {
+          measureBlockX = -offsetX - 1.5
+          measureBlockY = offsetY + 3
+        } else {
+          measureBlockX = -offsetX - 1.5
+          measureBlockY = offsetY + 1
+        }
+
+        label.x = 0
+        label.y = measureBlockY + 2
+        content.x = 0
+        content.y = measureBlockY + 5.5
+        break
+      }
+    }
+
+    return {
+      measureBlockX,
+      measureBlockY,
+      label,
+      content
+    }
+  }
+
   render = () => {
+    const {measureBlockX, measureBlockY, label, content} = this.getMeasureBlockOffset()
     let offsetX = Math.round(this.props.width / 2)
     let offsetY = Math.round(this.props.height / 2)
 
@@ -267,15 +483,15 @@ class SimpleFigureElement extends React.Component {
           </svg>
         </g>
 
-        {this.props.isMeasure && <rect width={7} height={7} x={-offsetX - 1.5} y={offsetY + 0.5}
+        {this.props.isMeasure && <rect width={7} height={7} x={measureBlockX} y={measureBlockY}
           style={{
             'fill': '#FFFFFF',
             'stroke': '#DDDFE1',
             'strokeWidth': '1',
             'fillOpacity': '1',
             'strokeOpacity': '0.9'
-          }} /> }
-        {this.props.isMeasure && <rect width={7} height={3} x={-offsetX - 1.5} y={offsetY + 0.5}
+          }} />}
+        {this.props.isMeasure && <rect width={7} height={3} x={measureBlockX} y={measureBlockY}
           style={{
             'fill': '#EFF6F9',
             'stroke': '#DDDFE1',
@@ -283,9 +499,9 @@ class SimpleFigureElement extends React.Component {
             'fillOpacity': '1',
             'strokeOpacity': '0.9'
           }} />}
-        {this.props.isMeasure && <text x={0} y={offsetY + 2.5} textAnchor='middle'
+        {this.props.isMeasure && <text x={label.x} y={label.y} textAnchor='middle'
           style={{'fill': '#000000', fontSize: '1.5px'}}>{this.props.labelText}</text>}
-        {this.props.isMeasure && <text x={0} y={offsetY + 6} textAnchor='middle'
+        {this.props.isMeasure && <text x={content.x} y={content.y} textAnchor='middle'
           style={{'fill': '#000000', fontSize: '1.5px'}}>{this.props.measureValue}</text>}
       </g>
     )

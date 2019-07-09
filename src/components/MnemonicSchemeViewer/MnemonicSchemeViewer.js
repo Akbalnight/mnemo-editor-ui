@@ -140,7 +140,6 @@ class MnemonicSchemeViewer extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     if (state.prevMnemoschemeData !== props.mnemoschemeData) {
-      console.log(props.mnemoschemeData);
       return {
         ...state.self._prepareData(props.mnemoschemeData),
         prevMnemoschemeData: props.mnemoschemeData
@@ -222,7 +221,6 @@ class MnemonicSchemeViewer extends React.Component {
     )
   }
 }
-
 
 MnemonicSchemeViewer.propTypes = {
   className: PropTypes.string,
