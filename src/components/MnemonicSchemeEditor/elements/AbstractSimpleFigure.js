@@ -14,13 +14,13 @@ class AbstractSimpleFigure extends AbstractFigure {
   canChangeColor = () => true;
 
   canBeTransformed = () => [
-    [{flip: 'horizontal'}],
-    [{flip: 'vertical'}],
     [{rotate: 90}],
     [{rotate: 180}],
     [{rotate: 270}],
-    [{flip: 'vertical'}, {rotate: 90}],
-    [{flip: 'horizontal'}, {rotate: 90}]
+    [{flip: 'vertical'}],
+    [{flip: 'horizontal'}, {rotate: 90}],
+    [{flip: 'horizontal'}],
+    [{flip: 'vertical'}, {rotate: 90}]
   ];
 
   onIconClick = () => {

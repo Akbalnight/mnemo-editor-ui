@@ -94,10 +94,12 @@ class MnemonicSchemeEditor extends React.Component {
 
   componentDidMount() {
     document.addEventListener('mouseup', this.nodeMoveModeOff, false)
+    document.addEventListener('wheel', this.onWheel, {passive: false})
   }
 
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.nodeMoveModeOff, false)
+    document.removeEventListener('wheel', this.onWheel, false)
   }
 
   getAvailableFigures = () => {
@@ -666,11 +668,67 @@ class MnemonicSchemeEditor extends React.Component {
     const coords = this.coordinates(event)
     const newState = {...this.state}
 
-    const figure = this.elementFigure(this.state.editingElement);
+    const figure = this.elementFigure(this.state.editingElement)
 
     newState.processingElements = figure.onMove(coords.x, coords.y, this.width, this.height,
       this.state.elements, this.state.processingElements)
     this.setState(newState)
+  }
+
+  transformElementByWheel = (element, wheelEvent) => {
+    let newTransformation
+    const figure = this.elementFigure(element)
+    const transformations = figure.canBeTransformed() || []
+    const currentTransformation = element.transformation || []
+    const isFlipped = currentTransformation.find(t => !!t.flip)
+
+    const isHasFlipProp = transformation => transformation.findIndex(t => !!t.flip) > -1
+    const possibleTransformations = transformations.filter(t => isFlipped ? isHasFlipProp(t) : !isHasFlipProp(t))
+    const currentIndexFromPossibleTransformations = possibleTransformations.findIndex(t => equal(t, currentTransformation))
+
+    if (wheelEvent.wheelDelta < 0) { // Если колесо кутили вниз
+      if (currentIndexFromPossibleTransformations === possibleTransformations.length - 1) {
+        newTransformation = isFlipped ? possibleTransformations[0] : null
+      } else {
+        newTransformation = possibleTransformations[currentIndexFromPossibleTransformations + 1]
+      }
+    } else {
+      if (currentIndexFromPossibleTransformations === 0) {
+        newTransformation = !isFlipped ? null : possibleTransformations[possibleTransformations.length - 1]
+      } else if (currentIndexFromPossibleTransformations === -1) {
+        newTransformation = possibleTransformations[possibleTransformations.length - 1]
+      } else {
+        newTransformation = possibleTransformations[currentIndexFromPossibleTransformations - 1]
+      }
+    }
+
+    return newTransformation
+  }
+
+  onWheel = (e) => {
+    const newState = {...this.state}
+    const {editingElement, processingElements} = this.state
+    const isElementPipelineOrText = (e) => e.code() === 'Pipeline' || e.code() === 'Text'
+
+    if (e.shiftKey) {
+      e.preventDefault()
+      if (processingElements && processingElements.length) {
+        newState.processingElements = processingElements.map(el => {
+          if (!isElementPipelineOrText(el)) {
+            el.setTransformation(this.transformElementByWheel(el, e), true)
+          }
+
+          return el
+        })
+      } else if (editingElement) {
+        if (!isElementPipelineOrText(editingElement)) {
+          editingElement.setTransformation(this.transformElementByWheel(editingElement, e), true)
+          newState.editingElement = editingElement
+        }
+      }
+
+      this.setState(newState)
+    }
   }
 
   /**
