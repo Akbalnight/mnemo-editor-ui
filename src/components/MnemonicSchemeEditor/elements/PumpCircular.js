@@ -1,40 +1,27 @@
-import pumpCircular, {ReactComponent as pumpCircularSvg} from '../../../assets/images/PumpCircular.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pumpCircular, {ReactComponent as pumpCircularSvg} from '../../../assets/images/PumpCircular.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PumpCircular extends AbstractSimpleFigure {
-  code = () => {
-    return 'PumpCircular'
-  };
+	code = () => 'PumpCircular';
 
-  groupCode = () => {
-    return 'pumps'
-  };
+	groupCode = () => 'pumps';
 
-  name = () => {
-    return 'Насос циркуляционный'
-  };
+	name = () => 'Насос циркуляционный';
 
-  image = () => {
-    return pumpCircular
-  };
+	image = () => pumpCircular;
 
-  svgImage = () => {
-    return pumpCircularSvg
-  };
+	svgImage = () => pumpCircularSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+	];
 }
 
-export default PumpCircular
+export default PumpCircular;

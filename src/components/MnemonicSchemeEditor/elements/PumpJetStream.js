@@ -1,34 +1,21 @@
-import pumpJetStream, {ReactComponent as pumpJetStreamSvg} from '../../../assets/images/PumpJetStream.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pumpJetStream, {ReactComponent as pumpJetStreamSvg} from '../../../assets/images/PumpJetStream.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PumpJetStream extends AbstractSimpleFigure {
-  code = () => {
-    return 'PumpJetStream'
-  };
+	code = () => 'PumpJetStream';
 
-  groupCode = () => {
-    return 'pumps'
-  };
+	groupCode = () => 'pumps';
 
-  name = () => {
-    return 'Насос струйный (эжектор, инжектор, элеватор)'
-  };
+	name = () => 'Насос струйный (эжектор, инжектор, элеватор)';
 
-  image = () => {
-    return pumpJetStream
-  };
+	image = () => pumpJetStream;
 
-  svgImage = () => {
-    return pumpJetStreamSvg
-  };
+	svgImage = () => pumpJetStreamSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default PumpJetStream
+export default PumpJetStream;

@@ -1,36 +1,23 @@
-import pipelineConnection, {ReactComponent as pipelineConnectionSvg} from '../../../assets/images/PipelineConnection.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pipelineConnection, {ReactComponent as pipelineConnectionSvg} from '../../../assets/images/PipelineConnection.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PipelineConnection extends AbstractSimpleFigure {
-  code = () => {
-    return 'PipelineConnection'
-  };
+	code = () => 'PipelineConnection';
 
-  groupCode = () => {
-    return 'pipes'
-  };
+	groupCode = () => 'pipes';
 
-  name = () => {
-    return 'Соединение трубопроводов'
-  };
+	name = () => 'Соединение трубопроводов';
 
-  image = () => {
-    return pipelineConnection
-  };
+	image = () => pipelineConnection;
 
-  svgImage = () => {
-    return pipelineConnectionSvg
-  };
+	svgImage = () => pipelineConnectionSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [];
+	canBeTransformed = () => [];
 }
 
-export default PipelineConnection
+export default PipelineConnection;

@@ -1,1 +1,1 @@
-export { default as MnemonicSchemeEditor } from './MnemonicSchemeEditor'
+export {default as MnemonicSchemeEditor} from './MnemonicSchemeEditor';

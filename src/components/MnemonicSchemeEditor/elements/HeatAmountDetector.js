@@ -1,44 +1,31 @@
-import heatAmountDetector, {ReactComponent as heatAmountDetectorSvg} from '../../../assets/images/HeatAmountDetector.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import heatAmountDetector, {ReactComponent as heatAmountDetectorSvg} from '../../../assets/images/HeatAmountDetector.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class HeatAmountDetector extends AbstractSimpleFigure {
-  code = () => {
-    return 'HeatAmountDetector'
-  };
+	code = () => 'HeatAmountDetector';
 
-  groupCode = () => {
-    return 'measuringInstruments'
-  };
+	groupCode = () => 'measuringInstruments';
 
-  name = () => {
-    return 'Датчик количества теплоты'
-  };
+	name = () => 'Датчик количества теплоты';
 
-  image = () => {
-    return heatAmountDetector
-  };
+	image = () => heatAmountDetector;
 
-  svgImage = () => {
-    return heatAmountDetectorSvg
-  };
+	svgImage = () => heatAmountDetectorSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+	];
 
-  measures = () => [
-    'Q, Гкал'
-  ]
+	measures = () => [
+		'Q, Гкал',
+	];
 }
 
-export default HeatAmountDetector
+export default HeatAmountDetector;

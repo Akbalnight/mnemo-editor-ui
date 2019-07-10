@@ -1,38 +1,25 @@
-import valveLockPassthrough, {ReactComponent as valveLockPassthroughSvg} from '../../../assets/images/ValveLockPassthrough.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import valveLockPassthrough, {ReactComponent as valveLockPassthroughSvg} from '../../../assets/images/ValveLockPassthrough.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class ValveLockPassthrough extends AbstractSimpleFigure {
-  code = () => {
-    return 'ValveLockPassthrough'
-  };
+	code = () => 'ValveLockPassthrough';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Клапан (вентиль) запорный проходной'
-  };
+	name = () => 'Клапан (вентиль) запорный проходной';
 
-  image = () => {
-    return valveLockPassthrough
-  };
+	image = () => valveLockPassthrough;
 
-  svgImage = () => {
-    return valveLockPassthroughSvg
-  };
+	svgImage = () => valveLockPassthroughSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default ValveLockPassthrough
+export default ValveLockPassthrough;
