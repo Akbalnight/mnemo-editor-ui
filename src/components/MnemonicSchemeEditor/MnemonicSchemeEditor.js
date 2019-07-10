@@ -95,11 +95,13 @@ class MnemonicSchemeEditor extends React.Component {
   componentDidMount() {
     document.addEventListener('mouseup', this.nodeMoveModeOff, false)
     document.addEventListener('wheel', this.onWheel, {passive: false})
+    document.addEventListener('keyup', this.onKeyUp, false)
   }
 
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.nodeMoveModeOff, false)
     document.removeEventListener('wheel', this.onWheel, false)
+    document.removeEventListener('keyup', this.onKeyUp, false)
   }
 
   getAvailableFigures = () => {
@@ -703,6 +705,23 @@ class MnemonicSchemeEditor extends React.Component {
     }
 
     return newTransformation
+  }
+
+  onKeyUp = (e) => {
+    switch (e.key) {
+      case 'Delete': {
+        this.state.editingElement && this.removeEditingElement()
+        break
+      }
+      case 'Escape': {
+        this.setState({
+          mode: 'none',
+          drawingFigure: null,
+          processingElements: []
+        })
+        break
+      }
+    }
   }
 
   onWheel = (e) => {
