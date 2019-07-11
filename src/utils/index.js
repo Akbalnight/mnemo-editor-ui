@@ -1,10 +1,11 @@
-import deepEqual from 'deep-equal'
+import deepEqual from 'deep-equal';
+
 
 export const equal = (a, b) => {
-  return deepEqual(a, b)
-}
+	return deepEqual(a, b);
+};
 
-export const stop = (event) => {
-  event.stopPropagation()
-  event.preventDefault()
-}
+export const stop = event => {
+	event.stopPropagation();
+	event.preventDefault();
+};

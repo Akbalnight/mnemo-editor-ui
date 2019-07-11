@@ -1,38 +1,25 @@
-import pumpNonAdjustableReverse, {ReactComponent as pumpNonAdjustableReverseSvg} from '../../../assets/images/PumpNonAdjustableReverse.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pumpNonAdjustableReverse, {ReactComponent as pumpNonAdjustableReverseSvg} from '../../../assets/images/PumpNonAdjustableReverse.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PumpNonAdjustableReverse extends AbstractSimpleFigure {
-  code = () => {
-    return 'PumpNonAdjustableReverse'
-  };
+	code = () => 'PumpNonAdjustableReverse';
 
-  groupCode = () => {
-    return 'pumps'
-  };
+	groupCode = () => 'pumps';
 
-  name = () => {
-    return 'Насос нерегулируемый с реверсивным потоком'
-  };
+	name = () => 'Насос нерегулируемый с реверсивным потоком';
 
-  image = () => {
-    return pumpNonAdjustableReverse
-  };
+	image = () => pumpNonAdjustableReverse;
 
-  svgImage = () => {
-    return pumpNonAdjustableReverseSvg
-  };
+	svgImage = () => pumpNonAdjustableReverseSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default PumpNonAdjustableReverse
+export default PumpNonAdjustableReverse;

@@ -1,12 +1,10 @@
 class AbstractFigure {
-  // Потомки обязаны реализовать
-  // code(), name(), image(), dependent(), onClick(), onMove()
+	// Потомки обязаны реализовать
+	// code(), name(), image(), dependent(), onClick(), onMove()
 
-	generateId = () => {
-	  return Math.random().toString().replace('0.', '')
-	}
+	generateId = () => Math.random().toString().replace('0.', '');
 
-	measures = () => null
+	measures = () => null;
 }
 
-export default AbstractFigure
+export default AbstractFigure;

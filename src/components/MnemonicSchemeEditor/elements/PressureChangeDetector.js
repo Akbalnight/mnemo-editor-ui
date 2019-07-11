@@ -1,45 +1,32 @@
-import pressureChangeDetector, {ReactComponent as pressureChangeDetectorSvg} from '../../../assets/images/PressureChangeDetector.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pressureChangeDetector, {ReactComponent as pressureChangeDetectorSvg} from '../../../assets/images/PressureChangeDetector.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PressureChangeDetector extends AbstractSimpleFigure {
-  code = () => {
-    return 'PressureChangeDetector'
-  };
+	code = () => 'PressureChangeDetector';
 
-  groupCode = () => {
-    return 'measuringInstruments'
-  };
+	groupCode = () => 'measuringInstruments';
 
-  name = () => {
-    return 'Датчик перепада давления'
-  };
+	name = () => 'Датчик перепада давления';
 
-  image = () => {
-    return pressureChangeDetector
-  };
+	image = () => pressureChangeDetector;
 
-  svgImage = () => {
-    return pressureChangeDetectorSvg
-  };
+	svgImage = () => pressureChangeDetectorSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+	];
 
-  measures = () => [
-    '𝚫P, МПа',
-    '𝚫P, ат'
-  ]
+	measures = () => [
+		'𝚫P, МПа',
+		'𝚫P, ат',
+	];
 }
 
-export default PressureChangeDetector
+export default PressureChangeDetector;

@@ -1,38 +1,25 @@
-import throttle, {ReactComponent as throttleSvg} from '../../../assets/images/Throttle.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import throttle, {ReactComponent as throttleSvg} from '../../../assets/images/Throttle.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class Throttle extends AbstractSimpleFigure {
-  code = () => {
-    return 'Throttle'
-  };
+	code = () => 'Throttle';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Клапан дроссельный'
-  };
+	name = () => 'Клапан дроссельный';
 
-  image = () => {
-    return throttle
-  };
+	image = () => throttle;
 
-  svgImage = () => {
-    return throttleSvg
-  };
+	svgImage = () => throttleSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default Throttle
+export default Throttle;

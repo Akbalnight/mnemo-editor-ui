@@ -1,40 +1,27 @@
-import flowDirectionGas, {ReactComponent as flowDirectionGasSvg} from '../../../assets/images/FlowDirectionGas.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import flowDirectionGas, {ReactComponent as flowDirectionGasSvg} from '../../../assets/images/FlowDirectionGas.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class FlowDirectionGas extends AbstractSimpleFigure {
-  code = () => {
-    return 'FlowDirectionGas'
-  };
+	code = () => 'FlowDirectionGas';
 
-  groupCode = () => {
-    return 'directionArrows'
-  };
+	groupCode = () => 'directionArrows';
 
-  name = () => {
-    return 'Направление потока газа'
-  };
+	name = () => 'Направление потока газа';
 
-  image = () => {
-    return flowDirectionGas
-  };
+	image = () => flowDirectionGas;
 
-  svgImage = () => {
-    return flowDirectionGasSvg
-  };
+	svgImage = () => flowDirectionGasSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+	];
 }
 
-export default FlowDirectionGas
+export default FlowDirectionGas;

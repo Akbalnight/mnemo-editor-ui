@@ -1,38 +1,25 @@
-import latch, {ReactComponent as latchSvg} from '../../../assets/images/Latch.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import latch, {ReactComponent as latchSvg} from '../../../assets/images/Latch.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class Latch extends AbstractSimpleFigure {
-  code = () => {
-    return 'Latch'
-  };
+	code = () => 'Latch';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Задвижка'
-  };
+	name = () => 'Задвижка';
 
-  image = () => {
-    return latch
-  };
+	image = () => latch;
 
-  svgImage = () => {
-    return latchSvg
-  };
+	svgImage = () => latchSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default Latch
+export default Latch;

@@ -1,38 +1,25 @@
-import fanAxial, {ReactComponent as fanAxialSvg} from '../../../assets/images/FanAxial.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import fanAxial, {ReactComponent as fanAxialSvg} from '../../../assets/images/FanAxial.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class FanAxial extends AbstractSimpleFigure {
-  code = () => {
-    return 'FanAxial'
-  };
+	code = () => 'FanAxial';
 
-  groupCode = () => {
-    return 'fans'
-  };
+	groupCode = () => 'fans';
 
-  name = () => {
-    return 'Вентилятор осевой'
-  };
+	name = () => 'Вентилятор осевой';
 
-  image = () => {
-    return fanAxial
-  };
+	image = () => fanAxial;
 
-  svgImage = () => {
-    return fanAxialSvg
-  };
+	svgImage = () => fanAxialSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default FanAxial
+export default FanAxial;

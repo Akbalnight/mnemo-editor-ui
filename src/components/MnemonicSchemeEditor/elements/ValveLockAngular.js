@@ -1,34 +1,21 @@
-import valveLockAngular, {ReactComponent as valveLockAngularSvg} from '../../../assets/images/ValveLockAngular.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import valveLockAngular, {ReactComponent as valveLockAngularSvg} from '../../../assets/images/ValveLockAngular.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class ValveLockAngular extends AbstractSimpleFigure {
-  code = () => {
-    return 'ValveLockAngular'
-  };
+	code = () => 'ValveLockAngular';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Клапан (вентиль) запорный угловой'
-  };
+	name = () => 'Клапан (вентиль) запорный угловой';
 
-  image = () => {
-    return valveLockAngular
-  };
+	image = () => valveLockAngular;
 
-  svgImage = () => {
-    return valveLockAngularSvg
-  };
+	svgImage = () => valveLockAngularSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default ValveLockAngular
+export default ValveLockAngular;

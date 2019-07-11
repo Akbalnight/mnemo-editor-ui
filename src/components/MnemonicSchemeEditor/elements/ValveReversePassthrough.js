@@ -1,34 +1,21 @@
-import valveReversePassthrough, {ReactComponent as valveReversePassthroughSvg} from '../../../assets/images/ValveReversePassthrough.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import valveReversePassthrough, {ReactComponent as valveReversePassthroughSvg} from '../../../assets/images/ValveReversePassthrough.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class ValveReversePassthrough extends AbstractSimpleFigure {
-  code = () => {
-    return 'ValveReversePassthrough'
-  };
+	code = () => 'ValveReversePassthrough';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Клапан обратный проходной'
-  };
+	name = () => 'Клапан обратный проходной';
 
-  image = () => {
-    return valveReversePassthrough
-  };
+	image = () => valveReversePassthrough;
 
-  svgImage = () => {
-    return valveReversePassthroughSvg
-  };
+	svgImage = () => valveReversePassthroughSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
   canBeTransformed = () => [
     [{rotate: 90}],
@@ -37,4 +24,4 @@ class ValveReversePassthrough extends AbstractSimpleFigure {
   ];
 }
 
-export default ValveReversePassthrough
+export default ValveReversePassthrough;
