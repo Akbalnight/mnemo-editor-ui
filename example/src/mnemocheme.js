@@ -1,132 +1,122 @@
 export default {
-  id: 'idone',
-  name: 'Мнемосхема номер один',
-  data: [
-    {
-      'code': 'Pipeline',
-      'id': '867439308061148',
-      'points': [
-        {
-          'x': 12,
-          'y': 32
-        },
-        {
-          'x': 72,
-          'y': 32
-        },
-        {
-          'x': 72,
-          'y': 56
-        },
-        {
-          'x': 36,
-          'y': 56
-        },
-        {
-          'x': 36,
-          'y': 40
-        }
-      ],
-      'color': '#b80000'
-    },
-    {
-      'code': 'FlowDirectionWater',
-      'x': 29,
-      'y': 32,
-      'id': '7410452704407469',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'FlowDirectionWater',
-      'x': 58,
-      'y': 56,
-      'id': '21379629760996988',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'FlowDirectionWater',
-      'x': 69,
-      'y': 32,
-      'id': '7095977359677603',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'FlowMeter',
-      'x': 47,
-      'y': 32,
-      'id': '32857094416971466',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'PressureConverter',
-      'x': 43,
-      'y': 56,
-      'id': '8713301803372879',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'PressureChangeDetector',
-      'x': 67,
-      'y': 56,
-      'id': '1257400142641607',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'FlowMeterUltrasound',
-      'x': 57,
-      'y': 32,
-      'id': '5358591873871263',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'ValveReversePassthrough',
-      'x': 48,
-      'y': 56,
-      'id': '9871677332491415',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'FanCentrifugal',
-      'x': 36,
-      'y': 48,
-      'id': '17342357730976632',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'HeaterSectioned',
-      'x': 72,
-      'y': 51,
-      'id': '7323189004043995',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    },
-    {
-      'code': 'HeatExchanger',
-      'x': 72,
-      'y': 45,
-      'id': '8711661860665718',
-      'color': '#1273de',
-      'transformation': null,
-      'labelText': 'М7, т'
-    }
-  ]
-}
+	id: 'idone',
+	name: 'Мнемосхема номер один',
+	data: [
+		{
+			'code': 'Pipeline',
+			'id': '5593956453410027',
+			'points': [
+				{
+					'x': 11,
+					'y': 12
+				},
+				{
+					'x': 76,
+					'y': 12
+				},
+				{
+					'x': 76,
+					'y': 47
+				},
+				{
+					'x': 11,
+					'y': 47
+				}
+			],
+			'color': '#000000'
+		},
+		{
+			'code': 'Text',
+			'id': '27413100389755374',
+			'position': {
+				'x': 9,
+				'y': 9
+			},
+			'text': 'Схема 1',
+			'fontSize': 'medium',
+			'fontBold': false,
+			'fontItalic': true,
+			'fontUnderline': false,
+			'color': '#008b02'
+		},
+		{
+			'code': 'FlowDirectionWater',
+			'x': 14,
+			'y': 12,
+			'id': '8165327506101927',
+			'color': '#000000',
+			'transformation': null,
+			'labelText': null
+		},
+		{
+			'code': 'FlowDirectionGas',
+			'x': 14,
+			'y': 47,
+			'id': '142352704591584',
+			'color': '#000000',
+			'transformation': [
+				{
+					'rotate': 180
+				}
+			],
+			'labelText': null
+		},
+		{
+			'code': 'TemperatureConverter',
+			'x': 21,
+			'y': 10,
+			'id': '41294749270190856',
+			'color': '#000000',
+			'transformation': null,
+			'labelText': 't1, гр.C'
+		},
+		{
+			'code': 'FlowMeter',
+			'x': 30,
+			'y': 12,
+			'id': '7548142094546268',
+			'color': '#000000',
+			'transformation': null,
+			'labelText': 'M1, т'
+		},
+		{
+			'code': 'PressureChangeDetector',
+			'x': 74,
+			'y': 25,
+			'id': '42729069114677487',
+			'color': '#000000',
+			'transformation': [
+				{
+					'rotate': 270
+				}
+			],
+			'labelText': '𝚫P, МПа'
+		},
+		{
+			'code': 'PumpCantilevered',
+			'x': 27,
+			'y': 47,
+			'id': '1936280112492077',
+			'color': '#000000',
+			'transformation': [
+				{
+					'rotate': 270
+				}
+			],
+			'labelText': null
+		},
+		{
+			'code': 'FanCentrifugal',
+			'x': 54,
+			'y': 47,
+			'id': '5441114166415251',
+			'color': '#000000',
+			'transformation': [
+				{
+					'flip': 'vertical'
+				}
+			],
+			'labelText': null
+		}
+	],
+};

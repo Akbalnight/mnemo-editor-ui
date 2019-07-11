@@ -1,34 +1,21 @@
-import fanCentrifugal, {ReactComponent as fanCentrifugalSvg} from '../../../assets/images/FanCentrifugal.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import fanCentrifugal, {ReactComponent as fanCentrifugalSvg} from '../../../assets/images/FanCentrifugal.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class FanCentrifugal extends AbstractSimpleFigure {
-  code = () => {
-    return 'FanCentrifugal'
-  };
+	code = () => 'FanCentrifugal';
 
-  groupCode = () => {
-    return 'fans'
-  };
+	groupCode = () => 'fans';
 
-  name = () => {
-    return 'Вентилятор центробежный'
-  };
+	name = () => 'Вентилятор центробежный';
 
-  image = () => {
-    return fanCentrifugal
-  };
+	image = () => fanCentrifugal;
 
-  svgImage = () => {
-    return fanCentrifugalSvg
-  };
+	svgImage = () => fanCentrifugalSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default FanCentrifugal
+export default FanCentrifugal;

@@ -1,34 +1,21 @@
-import valveAdjuster, {ReactComponent as valveAdjusterSvg} from '../../../assets/images/ValveAdjuster.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import valveAdjuster, {ReactComponent as valveAdjusterSvg} from '../../../assets/images/ValveAdjuster.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class ValveAdjuster extends AbstractSimpleFigure {
-  code = () => {
-    return 'ValveAdjuster'
-  };
+	code = () => 'ValveAdjuster';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Вентиль, клапан регулирующий проходной'
-  };
+	name = () => 'Вентиль, клапан регулирующий проходной';
 
-  image = () => {
-    return valveAdjuster
-  };
+	image = () => valveAdjuster;
 
-  svgImage = () => {
-    return valveAdjusterSvg
-  };
+	svgImage = () => valveAdjusterSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default ValveAdjuster
+export default ValveAdjuster;

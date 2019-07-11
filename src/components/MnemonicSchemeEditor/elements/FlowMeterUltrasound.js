@@ -1,55 +1,42 @@
-import flowMeterUltrasound, {ReactComponent as flowMeterUltrasoundSvg} from '../../../assets/images/FlowMeterUltrasound.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import flowMeterUltrasound, {ReactComponent as flowMeterUltrasoundSvg} from '../../../assets/images/FlowMeterUltrasound.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class FlowMeterUltrasound extends AbstractSimpleFigure {
-  code = () => {
-    return 'FlowMeterUltrasound'
-  };
+	code = () => 'FlowMeterUltrasound';
 
-  groupCode = () => {
-    return 'measuringInstruments'
-  };
+	groupCode = () => 'measuringInstruments';
 
-  name = () => {
-    return 'Расходомер ультразвуковой'
-  };
+	name = () => 'Расходомер ультразвуковой';
 
-  image = () => {
-    return flowMeterUltrasound
-  };
+	image = () => flowMeterUltrasound;
 
-  svgImage = () => {
-    return flowMeterUltrasoundSvg
-  };
+	svgImage = () => flowMeterUltrasoundSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+	];
 
-  measures = () => [
-    'M1, т',
-    'M2, т',
-    'M3, т',
-    'M4, т',
-    'M7, т',
-    'M13, т',
-    'V1, м3',
-    'V2, м3',
-    'V3, м3',
-    'V4, м3',
-    'V7, м3',
-    'V13, м3'
-  ]
+	measures = () => [
+		'M1, т',
+		'M2, т',
+		'M3, т',
+		'M4, т',
+		'M7, т',
+		'M13, т',
+		'V1, м3',
+		'V2, м3',
+		'V3, м3',
+		'V4, м3',
+		'V7, м3',
+		'V13, м3',
+	];
 }
 
-export default FlowMeterUltrasound
+export default FlowMeterUltrasound;

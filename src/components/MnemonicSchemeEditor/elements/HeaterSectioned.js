@@ -1,38 +1,25 @@
-import heaterSectioned, {ReactComponent as heaterSectionedSvg} from '../../../assets/images/HeaterSectioned.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import heaterSectioned, {ReactComponent as heaterSectionedSvg} from '../../../assets/images/HeaterSectioned.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class HeaterSectioned extends AbstractSimpleFigure {
-  code = () => {
-    return 'HeaterSectioned'
-  };
+	code = () => 'HeaterSectioned';
 
-  groupCode = () => {
-    return 'heaters'
-  };
+	groupCode = () => 'heaters';
 
-  name = () => {
-    return 'Радиатор отопительный секционный'
-  };
+	name = () => 'Радиатор отопительный секционный';
 
-  image = () => {
-    return heaterSectioned
-  };
+	image = () => heaterSectioned;
 
-  svgImage = () => {
-    return heaterSectionedSvg
-  };
+	svgImage = () => heaterSectionedSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default HeaterSectioned
+export default HeaterSectioned;

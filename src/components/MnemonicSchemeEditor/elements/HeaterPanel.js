@@ -1,38 +1,25 @@
-import heaterPanel, {ReactComponent as heaterPanelSvg} from '../../../assets/images/HeaterPanel.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import heaterPanel, {ReactComponent as heaterPanelSvg} from '../../../assets/images/HeaterPanel.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class HeaterPanel extends AbstractSimpleFigure {
-  code = () => {
-    return 'HeaterPanel'
-  };
+	code = () => 'HeaterPanel';
 
-  groupCode = () => {
-    return 'heaters'
-  };
+	groupCode = () => 'heaters';
 
-  name = () => {
-    return 'Радиатор отопительный панельный'
-  };
+	name = () => 'Радиатор отопительный панельный';
 
-  image = () => {
-    return heaterPanel
-  };
+	image = () => heaterPanel;
 
-  svgImage = () => {
-    return heaterPanelSvg
-  };
+	svgImage = () => heaterPanelSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 
-  canBeTransformed = () => [
-    [{rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+	];
 }
 
-export default HeaterPanel
+export default HeaterPanel;

@@ -1,34 +1,21 @@
-import valveReverseAngular, {ReactComponent as valveReverseAngularSvg} from '../../../assets/images/ValveReverseAngular.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import valveReverseAngular, {ReactComponent as valveReverseAngularSvg} from '../../../assets/images/ValveReverseAngular.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class ValveReverseAngular extends AbstractSimpleFigure {
-  code = () => {
-    return 'ValveReverseAngular'
-  };
+	code = () => 'ValveReverseAngular';
 
-  groupCode = () => {
-    return 'valves'
-  };
+	groupCode = () => 'valves';
 
-  name = () => {
-    return 'Клапан обратный угловой'
-  };
+	name = () => 'Клапан обратный угловой';
 
-  image = () => {
-    return valveReverseAngular
-  };
+	image = () => valveReverseAngular;
 
-  svgImage = () => {
-    return valveReverseAngularSvg
-  };
+	svgImage = () => valveReverseAngularSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default ValveReverseAngular
+export default ValveReverseAngular;

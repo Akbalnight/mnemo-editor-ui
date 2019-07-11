@@ -1,34 +1,21 @@
-import pumpCantilevered, {ReactComponent as pumpCantileveredSvg} from '../../../assets/images/PumpCantilevered.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pumpCantilevered, {ReactComponent as pumpCantileveredSvg} from '../../../assets/images/PumpCantilevered.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PumpCantilevered extends AbstractSimpleFigure {
-  code = () => {
-    return 'PumpCantilevered'
-  };
+	code = () => 'PumpCantilevered';
 
-  groupCode = () => {
-    return 'pumps'
-  };
+	groupCode = () => 'pumps';
 
-  name = () => {
-    return 'Насос консольный'
-  };
+	name = () => 'Насос консольный';
 
-  image = () => {
-    return pumpCantilevered
-  };
+	image = () => pumpCantilevered;
 
-  svgImage = () => {
-    return pumpCantileveredSvg
-  };
+	svgImage = () => pumpCantileveredSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default PumpCantilevered
+export default PumpCantilevered;

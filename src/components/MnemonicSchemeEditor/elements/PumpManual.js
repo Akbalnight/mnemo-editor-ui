@@ -1,34 +1,21 @@
-import pumpManual, {ReactComponent as pumpManualSvg} from '../../../assets/images/PumpManual.svg'
-import AbstractSimpleFigure from './AbstractSimpleFigure'
+import pumpManual, {ReactComponent as pumpManualSvg} from '../../../assets/images/PumpManual.svg';
+import AbstractSimpleFigure from './AbstractSimpleFigure';
+
 
 class PumpManual extends AbstractSimpleFigure {
-  code = () => {
-    return 'PumpManual'
-  };
+	code = () => 'PumpManual';
 
-  groupCode = () => {
-    return 'pumps'
-  };
+	groupCode = () => 'pumps';
 
-  name = () => {
-    return 'Насос ручной'
-  };
+	name = () => 'Насос ручной';
 
-  image = () => {
-    return pumpManual
-  };
+	image = () => pumpManual;
 
-  svgImage = () => {
-    return pumpManualSvg
-  };
+	svgImage = () => pumpManualSvg;
 
-  width = () => {
-    return 4
-  };
+	width = () => 4;
 
-  height = () => {
-    return 4
-  };
+	height = () => 4;
 }
 
-export default PumpManual
+export default PumpManual;
