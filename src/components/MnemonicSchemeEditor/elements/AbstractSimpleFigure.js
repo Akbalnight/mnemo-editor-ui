@@ -10,15 +10,15 @@ class AbstractSimpleFigure extends AbstractFigure {
 
 	canChangeColor = () => true;
 
-  canBeTransformed = () => [
-    [{rotate: 90}],
-    [{rotate: 180}],
-    [{rotate: 270}],
-    [{flip: 'vertical'}],
-    [{flip: 'horizontal'}, {rotate: 90}],
-    [{flip: 'horizontal'}],
-    [{flip: 'vertical'}, {rotate: 90}]
-  ];
+	canBeTransformed = () => [
+		[{rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}],
+		[{flip: 'vertical'}],
+		[{flip: 'horizontal'}, {rotate: 90}],
+		[{flip: 'horizontal'}],
+		[{flip: 'vertical'}, {rotate: 90}]
+	];
 
 	onIconClick = () => {};
 
