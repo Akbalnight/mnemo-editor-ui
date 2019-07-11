@@ -1037,23 +1037,22 @@ class MnemonicSchemeEditor extends React.Component {
 	};
 
 	storeScheme = () => {
-		console.log('ex', this.export());
-		// storeScheme({
-		// 	id: this.props.id,
-		// 	name: this.state.name,
-		// 	isProduction: this.state.isProduction,
-		// 	data: this.export(),
-		// }).catch(error => {
-		// 	notification.error({
-		// 		message: 'Ошибка',
-		// 		description: error.message,
-		// 	});
-		// }).then(() => {
-		// 	notification.info({
-		// 		message: 'Мнемосхема сохранена',
-		// 		description: 'Мнемосхема сохранена удачно',
-		// 	});
-		// });
+		storeScheme({
+			id: this.props.id,
+			name: this.state.name,
+			isProduction: this.state.isProduction,
+			data: this.export(),
+		}).catch(error => {
+			notification.error({
+				message: 'Ошибка',
+				description: error.message,
+			});
+		}).then(() => {
+			notification.info({
+				message: 'Мнемосхема сохранена',
+				description: 'Мнемосхема сохранена удачно',
+			});
+		});
 	};
 
 	storeSchemeHandler = () => {
