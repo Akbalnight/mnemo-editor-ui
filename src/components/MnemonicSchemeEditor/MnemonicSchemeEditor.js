@@ -806,7 +806,7 @@ class MnemonicSchemeEditor extends React.Component {
 		);
 
 		this.setState(newState);
-	}
+	};
 
 	transformElementByWheel = (element, wheelEvent) => {
 		let newTransformation;
