@@ -18,9 +18,9 @@ class ValveReversePassthrough extends AbstractSimpleFigure {
 	height = () => 4;
 
 	canBeTransformed = () => [
-		[{flip: 'horizontal'}],
 		[{rotate: 90}],
-		[{flip: 'vertical'}, {rotate: 90}],
+		[{rotate: 180}],
+		[{rotate: 270}]
 	];
 }
 

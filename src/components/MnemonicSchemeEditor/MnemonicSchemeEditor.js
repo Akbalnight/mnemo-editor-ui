@@ -93,10 +93,14 @@ class MnemonicSchemeEditor extends React.Component {
 
 	componentDidMount() {
 		document.addEventListener('mouseup', this.nodeMoveModeOff, false);
+		document.addEventListener('wheel', this.onWheel, {passive: false});
+		document.addEventListener('keyup', this.onKeyUp, false);
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('mouseup', this.nodeMoveModeOff, false);
+		document.removeEventListener('wheel', this.onWheel, false);
+		document.removeEventListener('keyup', this.onKeyUp, false);
 	}
 
 	getAvailableFigures = () => {
@@ -804,6 +808,80 @@ class MnemonicSchemeEditor extends React.Component {
 		this.setState(newState);
 	};
 
+	transformElementByWheel = (element, wheelEvent) => {
+		let newTransformation;
+		const figure = this.elementFigure(element);
+		const transformations = figure.canBeTransformed() || [];
+		const currentTransformation = element.transformation || [];
+		const isFlipped = currentTransformation.find(t => !!t.flip);
+
+		const isHasFlipProp = transformation => transformation.findIndex(t => !!t.flip) > -1;
+		const possibleTransformations = transformations.filter(t => isFlipped ? isHasFlipProp(t) : !isHasFlipProp(t));
+		const currentIndexFromPossibleTransformations = possibleTransformations.findIndex(t => equal(t, currentTransformation));
+
+		if (wheelEvent.wheelDelta < 0) { // Если колесо кутили вниз
+			if (currentIndexFromPossibleTransformations === possibleTransformations.length - 1) {
+				newTransformation = isFlipped ? possibleTransformations[0] : null;
+			} else {
+				newTransformation = possibleTransformations[currentIndexFromPossibleTransformations + 1];
+			}
+		} else {
+			if (currentIndexFromPossibleTransformations === 0) {
+				newTransformation = !isFlipped ? null : possibleTransformations[possibleTransformations.length - 1];
+			} else if (currentIndexFromPossibleTransformations === -1) {
+				newTransformation = possibleTransformations[possibleTransformations.length - 1];
+			} else {
+				newTransformation = possibleTransformations[currentIndexFromPossibleTransformations - 1];
+			}
+		}
+
+		return newTransformation;
+	};
+
+	onKeyUp = e => {
+		switch (e.key) {
+			case 'Delete': {
+				this.state.editingElement && this.removeEditingElement();
+				break;
+			}
+			case 'Escape': {
+				this.setState({
+				  mode: 'none',
+				  drawingFigure: null,
+				  processingElements: []
+				});
+				break;
+			}
+			default: break;
+		}
+	};
+
+	onWheel = e => {
+		const newState = {...this.state};
+		const {editingElement, processingElements} = this.state;
+		const isElementPipelineOrText = e => e.code() === 'Pipeline' || e.code() === 'Text';
+
+		if (e.shiftKey) {
+			e.preventDefault();
+			if (processingElements && processingElements.length) {
+		        newState.processingElements = processingElements.map(el => {
+					if (!isElementPipelineOrText(el)) {
+			            el.setTransformation(this.transformElementByWheel(el, e), true);
+					}
+
+					return el;
+		        });
+			} else if (editingElement) {
+				if (!isElementPipelineOrText(editingElement)) {
+					editingElement.setTransformation(this.transformElementByWheel(editingElement, e), true);
+					newState.editingElement = editingElement;
+				}
+			}
+
+			this.setState(newState);
+		}
+	};
+
 	/**
 	 * Управление режимом перемещения объектов
 	 */
@@ -959,23 +1037,22 @@ class MnemonicSchemeEditor extends React.Component {
 	};
 
 	storeScheme = () => {
-		console.log('ex', this.export());
-		// storeScheme({
-		// 	id: this.props.id,
-		// 	name: this.state.name,
-		// 	isProduction: this.state.isProduction,
-		// 	data: this.export(),
-		// }).catch(error => {
-		// 	notification.error({
-		// 		message: 'Ошибка',
-		// 		description: error.message,
-		// 	});
-		// }).then(() => {
-		// 	notification.info({
-		// 		message: 'Мнемосхема сохранена',
-		// 		description: 'Мнемосхема сохранена удачно',
-		// 	});
-		// });
+		storeScheme({
+			id: this.props.id,
+			name: this.state.name,
+			isProduction: this.state.isProduction,
+			data: this.export(),
+		}).catch(error => {
+			notification.error({
+				message: 'Ошибка',
+				description: error.message,
+			});
+		}).then(() => {
+			notification.info({
+				message: 'Мнемосхема сохранена',
+				description: 'Мнемосхема сохранена удачно',
+			});
+		});
 	};
 
 	storeSchemeHandler = () => {
