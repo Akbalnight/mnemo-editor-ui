@@ -341,6 +341,7 @@ class SimpleFigureInstance {
 		const e1 = this;
 
 		return !(
+			(!e2.position || !e1.position) ||
 			e1.position.x + e1.width < e2.position.x ||
 			e2.position.x + e2.width < e1.position.x ||
 			e1.position.y + e1.height < e2.position.y ||
