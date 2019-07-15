@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Grid from '../Grid';
 import Pipeline from '../MnemonicSchemeEditor/elements/Pipeline';
 import Text from '../MnemonicSchemeEditor/elements/Text';
 import PipelineConnection from '../MnemonicSchemeEditor/elements/PipelineConnection';
@@ -158,76 +159,22 @@ class MnemonicSchemeViewer extends React.Component {
 		const width = 124;
 		const height = 76;
 
-		const grid = [];
-
-		for (let i = 1; i <= width - 1; i++) {
-			grid.push(
-				<line
-					key={'grid-x-' + i}
-					x1={i}
-					x2={i}
-					y1='0'
-					y2={height}
-					vectorEffect={'non-scaling-stroke'}
-					strokeWidth='1px'
-					strokeDasharray={i % 4 !== 0 ? 1 : undefined}
-					stroke={'#eee'}
-				/>
-			);
-		}
-		for (let i = 1; i <= height - 1; i++) {
-			grid.push(
-				<line
-					key={'grid-y-' + i}
-					y1={i}
-					y2={i}
-					x1='0'
-					x2={width}
-					vectorEffect={'non-scaling-stroke'}
-					strokeWidth='1px'
-					strokeDasharray={i % 4 !== 0 ? 1 : undefined}
-					stroke={'#eee'}
-				/>
-			);
-		}
-
 		return (
-			<div
+			<Grid
+				width={width}
+				height={height}
 				className={classnames('mnemonic-scheme-viewer', className)}
 			>
-				<svg
-					className='mnemonic-scheme-viewer__svg'
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox={`0 0 ${width} ${height}`}
-				>
-					<filter
-						id='mnemonic-scheme-editor-blur-filter' x='-5' y='-5' width={width + 5} height={height + 5}
-						filterUnits='userSpaceOnUse'
+				{this.state.elements.map(e => (
+					<g
+						key={e.id}
+						vectorEffect={'non-scaling-stroke'}
+						className='mnemonic-scheme-viewer__element'
 					>
-						<feDropShadow dx='0' dy='0' stdDeviation='0.15' floodColor='#0000ff' />
-					</filter>
-					<filter
-						id='mnemonic-scheme-editor-light-blur-filter'
-						x='-5'
-						y='-5'
-						width={width + 5}
-						height={height + 5}
-						filterUnits='userSpaceOnUse'
-					>
-						<feDropShadow dx='0' dy='0' stdDeviation='0.1' floodColor='#000088' />
-					</filter>
-					{grid}
-					{this.state.elements.map(e => (
-						<g
-							key={e.id}
-							vectorEffect={'non-scaling-stroke'}
-							className='mnemonic-scheme-viewer__element'
-						>
-							{e.render()}
-						</g>
-					))}
-				</svg>
-			</div>
+						{e.render()}
+					</g>
+				))}
+			</Grid>
 		);
 	}
 }

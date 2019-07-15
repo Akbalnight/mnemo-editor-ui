@@ -5,6 +5,7 @@ import {equal, stop} from '../../utils';
 import {Button, Col, Icon, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
 import {findGroupByCode} from '../../constants';
 import {getScheme, storeScheme} from '../../utils/network';
+import Grid from '../Grid';
 import PipelineConnection from './elements/PipelineConnection';
 import Text from './elements/Text';
 import PipelineCross from './elements/PipelineCross';
@@ -83,7 +84,7 @@ class MnemonicSchemeEditor extends React.Component {
 			editingElement: null,
 			onMouseOverElement: null,
 		};
-		this.svgRef = React.createRef();
+		this.gridRef = React.createRef();
 		this.width = 124;
 		this.height = 76;
 		if (props.id) {
@@ -146,32 +147,6 @@ class MnemonicSchemeEditor extends React.Component {
 		const width = this.width;
 		const height = this.height;
 
-		const grid = [];
-		for (let i = 1; i <= width - 1; i++) {
-			grid.push(
-				<line
-					key={'grid-x-' + i}
-					x1={i}
-					x2={i}
-					y1='0'
-					y2={height}
-					className={'mnemonic-scheme-rightPanel-viewPanel-grid-line-' + (i % 4 === 0 ? 'main' : 'additional')}
-				/>
-			);
-		}
-		for (let i = 1; i <= height - 1; i++) {
-			grid.push(
-				<line
-					key={'grid-y-' + i}
-					y1={i}
-					y2={i}
-					x1='0'
-					x2={width}
-					className={'mnemonic-scheme-rightPanel-viewPanel-grid-line-' + (i % 4 === 0 ? 'main' : 'additional')}
-				/>
-			);
-		}
-
 		const processingClass = e => {
 			if (this.state.isMoving && e === this.state.editingElement) {
 				return 'mnemonic-scheme-editor-moving-element';
@@ -192,58 +167,42 @@ class MnemonicSchemeEditor extends React.Component {
 			}
 		};
 
-		// let gridElement = <Contain ratio={this.width/this.height} className='mnemonic-scheme-rightPanel-viewPanel-grid-ratio'>
 		return (
-			<div className='mnemonic-scheme-rightPanel-viewPanel-grid-ratio'>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					className='mnemonic-scheme-rightPanel-viewPanel-grid-field'
-					viewBox={'0 0 ' + width + ' ' + height}
-					ref={this.svgRef}
-					onClick={this.state.mode === 'drawing' ? this.drawingClick : this.selectionClick}
-					onMouseMove={this.state.mode === 'drawing' ? this.drawingMove : this.state.isMoving
-						? this.nodeMove
-						: this.selectionMove
-					}
-					onContextMenu={this.state.mode === 'drawing' ? this.drawingRightClick : null}
-				>
-					<filter
-						id='mnemonic-scheme-editor-blur-filter' x='-5' y='-5' width={width + 5} height={height + 5}
-						filterUnits='userSpaceOnUse'
+			<Grid
+				width={width}
+				height={height}
+				ref={this.gridRef}
+				onClick={this.state.mode === 'drawing' ? this.drawingClick : this.selectionClick}
+				onMouseMove={this.state.mode === 'drawing' ? this.drawingMove : this.state.isMoving
+					? this.nodeMove
+					: this.selectionMove
+				}
+				onContextMenu={this.state.mode === 'drawing' ? this.drawingRightClick : null}
+				className='mnemonic-scheme-rightPanel-viewPanel-grid-ratio'
+			>
+				{!(this.state.elements && this.state.elements.length) ? '' : this.state.elements.map(e => (
+					<g
+						key={e.id}
+						className={elementClass(e)}
+						onMouseDown={this.state.mode !== 'drawing' && e === this.state.editingElement
+							? this.nodeMoveModeOn
+							: undefined
+						}
 					>
-						<feDropShadow dx='0' dy='0' stdDeviation='0.15' floodColor='#0000ff' />
-					</filter>
-					<filter
-						id='mnemonic-scheme-editor-light-blur-filter' x='-5' y='-5' width={width + 5} height={height + 5}
-						filterUnits='userSpaceOnUse'
-					>
-						<feDropShadow dx='0' dy='0' stdDeviation='0.1' floodColor='#000088' />
-					</filter>
-					{grid}
-					{!(this.state.elements && this.state.elements.length) ? '' : this.state.elements.map(e => (
+						{e.render()}
+					</g>
+				))}
+				{!(this.state.processingElements && this.state.processingElements.length)
+					? ''
+					: this.state.processingElements.map(e => (
 						<g
 							key={e.id}
-							className={elementClass(e)}
-							onMouseDown={this.state.mode !== 'drawing' && e === this.state.editingElement
-								? this.nodeMoveModeOn
-								: undefined
-							}
+							className={processingClass(e)}
 						>
 							{e.render()}
 						</g>
 					))}
-					{!(this.state.processingElements && this.state.processingElements.length)
-						? ''
-						: this.state.processingElements.map(e => (
-							<g
-								key={e.id}
-								className={processingClass(e)}
-							>
-								{e.render()}
-							</g>
-						))}
-				</svg>
-			</div>
+			</Grid>
 		);
 	};
 
@@ -990,7 +949,7 @@ class MnemonicSchemeEditor extends React.Component {
 	 * Преобразование мышиных координат события в координаты на сетке
 	 */
 	coordinates = (event, rounded = true) => {
-		const svg = this.svgRef.current;
+		const svg = this.gridRef.current && this.gridRef.current.getSvg();
 		const rect = svg.getBoundingClientRect();
 		const svgWidth = rect.width - 2;
 		const svgHeight = rect.height - 2;
