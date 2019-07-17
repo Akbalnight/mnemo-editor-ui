@@ -72,6 +72,9 @@ class MnemonicSchemeViewer extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.gridRef = React.createRef();
+		this.height = 76;
+		this.width = 124;
 		this.state = {
 			self: this,
 			prevMnemoschemeData: props.mnemoschemeData,
@@ -107,6 +110,151 @@ class MnemonicSchemeViewer extends React.Component {
 		}
 	};
 
+	changeElementsPositions = (elements, callbackX, callbackY) => {
+		return elements.map(el => {
+			const newElement = {...el};
+
+			if (newElement.code() === 'Pipeline') {
+				const newPoints = newElement.points.map(point => ({
+					x: callbackX(point.x),
+					y: callbackY(point.y),
+				}));
+				newElement.setPoints(newPoints);
+			} else {
+				newElement.setPosition(
+					callbackX(newElement.position.x),
+					callbackY(newElement.position.y),
+				);
+			}
+
+			return newElement;
+		});
+	};
+
+	/**
+	 * Поправка позиции схемы на viewport
+	 */
+	fixPosition = () => {
+		const newState = {...this.state};
+		const svg = this.gridRef.current && this.gridRef.current.getSvg();
+		const svgContainerRects = svg.getBoundingClientRect();
+		const svgWidth = svgContainerRects.width;
+		const svgHeight = svgContainerRects.height;
+		const svgCoords = this.coordinates(svgContainerRects.x + svgWidth, svgContainerRects.y + svgHeight);
+		const viewportRects = svg.parentElement.getBoundingClientRect();
+		const delX = svgWidth / viewportRects.width;
+		const delY = svgHeight / viewportRects.height;
+		const viewportCoords = {x: Math.round(svgCoords.x / delX), y: Math.round(svgCoords.y / delY)};
+		const viewportOffsetX = Math.round(viewportCoords.x / 2);
+		const viewportOffsetY = Math.round(viewportCoords.y / 2);
+		const domItems = document.querySelectorAll('.mnemonic-scheme-viewer > svg > g');
+		const {xMin, xMax, yMin, yMax} = this.getExtremePoints(domItems);
+		let elements = [];
+
+		// Если вся схема может влезть во viewport по горизонтали
+		if (xMax - xMin + 4 < viewportCoords.x) {
+			elements = this.changeElementsPositions(
+				newState.elements,
+				x => Math.round(x + (viewportOffsetX - ((xMax - xMin) / 2) - xMin)),
+				y => y,
+			);
+		}
+
+		// Если вся схема может влезть во viewport по вертикали
+		if (yMax - yMin + 4 < viewportCoords.y) {
+			elements = this.changeElementsPositions(
+				newState.elements,
+				x => x,
+				y => Math.round(y + (viewportOffsetY - ((yMax - yMin) / 2) - yMin)),
+			);
+		}
+
+		// Если схема не влезает по горизонтали, смещаем её к левому краю
+		if (xMax - xMin + 4 > viewportCoords.x && xMin > 4) {
+			elements = this.changeElementsPositions(
+				newState.elements,
+				x => x + (xMin - 2),
+				y => y,
+			);
+		}
+
+		// Если схема не влезает по вертикали, смещаем её к верхнему краю
+		if (yMax - yMin + 4 > viewportCoords.y && yMin > 4) {
+			elements = this.changeElementsPositions(
+				newState.elements,
+				x => x,
+				y => y - (yMin - 2),
+			);
+		}
+
+		newState.elements = elements;
+		this.setState(newState);
+	};
+
+	/**
+	 * Возвращает крайние точки схемы по переданным в параметр элементам
+	 *
+	 * @param items (DOM элементы схемы)
+	 * @returns {{yMin: number, yMax: number, xMax: number, xMin: number}}
+	 */
+	getExtremePoints = items => {
+		let xMin;
+		let xMax;
+		let yMin;
+		let yMax;
+
+		const itemRects = items[0].getBoundingClientRect();
+
+		xMin = this.coordinates(itemRects.x, itemRects.y).x;
+		xMax = this.coordinates(itemRects.x + itemRects.width, itemRects.y).x;
+		yMin = this.coordinates(itemRects.x, itemRects.y).y;
+		yMax = this.coordinates(itemRects.x, itemRects.y + itemRects.height).y;
+
+		for (let i = 1; i < items.length; i++) {
+			const item = items[i];
+			const itemRects = item.getBoundingClientRect();
+			const itemMinX = this.coordinates(itemRects.x, itemRects.y).x;
+			const itemMaX = this.coordinates(itemRects.x + itemRects.width, itemRects.y).x;
+			const itemMinY = this.coordinates(itemRects.x, itemRects.y).y;
+			const itemMaxY = this.coordinates(itemRects.x, itemRects.y + itemRects.height).y;
+
+			xMin = itemMinX < xMin ? itemMinX : xMin;
+			xMax = itemMaX > xMax ? itemMaX : xMax;
+			yMin = itemMinY < yMin ? itemMinY : yMin;
+			yMax = itemMaxY > yMax ? itemMaxY : yMax;
+		}
+
+		return {
+			xMin,
+			xMax,
+			yMin,
+			yMax,
+		};
+	};
+
+	/**
+	 * Поправка позиции DOM элемента на коорддинатныю сетку
+	 *
+	 * @param elX
+	 * @param elY
+	 * @returns {{x: number, y: number}}
+	 */
+	coordinates = (elX, elY) => {
+		const svg = this.gridRef.current && this.gridRef.current.getSvg();
+		const rect = svg.getBoundingClientRect();
+		const svgWidth = rect.width - 2;
+		const svgHeight = rect.height - 2;
+		const offset = {
+			top: rect.top + document.body.scrollTop,
+			left: rect.left + document.body.scrollLeft,
+		};
+
+		const x = Math.round((elX - offset.left) * this.width / svgWidth);
+		const y = Math.round((elY - offset.top) * this.height / svgHeight);
+
+		return {x, y};
+	};
+
 	dataRequest = () => {
 		if (this.props.onDataRequest) {
 			const resultOrPromise = this.props.onDataRequest(this.state.measureKeys);
@@ -129,6 +277,7 @@ class MnemonicSchemeViewer extends React.Component {
 	};
 
 	componentDidMount() {
+		this.fixPosition();
 		this._attachInterval();
 	}
 
@@ -156,14 +305,12 @@ class MnemonicSchemeViewer extends React.Component {
 	render() {
 		const {className} = this.props;
 
-		const width = 124;
-		const height = 76;
-
 		return (
 			<Grid
-				width={width}
-				height={height}
+				width={this.width}
+				height={this.height}
 				className={classnames('mnemonic-scheme-viewer', className)}
+				ref={this.gridRef}
 			>
 				{this.state.elements.map(e => (
 					<g

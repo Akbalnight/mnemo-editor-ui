@@ -954,7 +954,8 @@ class MnemonicSchemeEditor extends React.Component {
 		const svgWidth = rect.width - 2;
 		const svgHeight = rect.height - 2;
 		const offset = {
-			top: rect.top + document.body.scrollTop, left: rect.left + document.body.scrollLeft,
+			top: rect.top + document.body.scrollTop,
+			left: rect.left + document.body.scrollLeft,
 		};
 
 		let x = (event.clientX - offset.left) * this.width / svgWidth;

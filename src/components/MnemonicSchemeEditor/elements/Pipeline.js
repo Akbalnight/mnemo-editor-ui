@@ -113,6 +113,10 @@ class PipelineInstance {
 		this.points.push({x, y});
 	};
 
+	setPoints = points => {
+		this.points = points;
+	};
+
 	setTemporaryPoint = (x, y) => {
 		this.temporaryPoint = {x, y};
 	};
