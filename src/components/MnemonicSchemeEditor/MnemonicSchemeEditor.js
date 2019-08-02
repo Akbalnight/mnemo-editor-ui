@@ -86,15 +86,24 @@ class MnemonicSchemeEditor extends React.Component {
 		this.svgRef = React.createRef();
 		this.width = 124;
 		this.height = 76;
-		if (props.id) {
-			this.getScheme(props.id);
-		}
 	}
 
 	componentDidMount() {
+		const {id, mnemoscheme, requestSchemeById} = this.props;
+
 		document.addEventListener('mouseup', this.nodeMoveModeOff, false);
 		document.addEventListener('wheel', this.onWheel, {passive: false});
 		document.addEventListener('keyup', this.onKeyUp, false);
+
+		if (id && requestSchemeById) {
+			this.getScheme(id);
+		} else if (mnemoscheme) {
+			this.import(mnemoscheme.content);
+			this.setState({
+				name: mnemoscheme.title,
+				isProduction: !!mnemoscheme.isProduction,
+			});
+		}
 	}
 
 	componentWillUnmount() {
@@ -306,6 +315,19 @@ class MnemonicSchemeEditor extends React.Component {
 		);
 	};
 
+	onSaveClick = () => {
+		const {onSave, defaultSendDataOnSave, id} = this.props;
+		const {name, isProduction} = this.state;
+
+		typeof onSave === 'function' && onSave({
+			id,
+			isProduction,
+			title: name,
+			content: this.export()
+		});
+		defaultSendDataOnSave && this.storeSchemeHandler();
+	};
+
 	nameChange = e => {
 		this.setState({
 			name: e.target.value,
@@ -354,7 +376,7 @@ class MnemonicSchemeEditor extends React.Component {
 							type='default'
 							icon='save'
 							className='mnemonic-scheme-rightPanel-topInputs-button'
-							onClick={() => this.storeSchemeHandler()}
+							onClick={this.onSaveClick}
 						>
 							Сохранить мнемосхему
 						</Button>
@@ -1029,7 +1051,7 @@ class MnemonicSchemeEditor extends React.Component {
 			...this.state,
 			mode: 'none',
 			drawingFigure: null,
-			elements: data.map(d => this.figureByCode(d.code).deserialize(d)),
+			elements: (data || []).map(d => this.figureByCode(d.code).deserialize(d)),
 			processingElements: [],
 			editingElement: null,
 			onMouseOverElement: null,
@@ -1086,7 +1108,17 @@ class MnemonicSchemeEditor extends React.Component {
 }
 
 MnemonicSchemeEditor.propTypes = {
-	id: PropTypes.number, onCancel: PropTypes.func,
+	id: PropTypes.number,
+	onCancel: PropTypes.func,
+	onSave: PropTypes.func,
+	mnemoscheme: PropTypes.object,
+	defaultSendDataOnSave: PropTypes.bool, // TODO: переименовать? Если true, то при сохранении схема улеит на сервак
+	requestSchemeById: PropTypes.bool
+};
+
+MnemonicSchemeEditor.defaultProps = {
+	defaultSendDataOnSave: true,
+	requestSchemeById: true,
 };
 
 export default MnemonicSchemeEditor;
