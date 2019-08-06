@@ -17,7 +17,8 @@ const defaultErrors = {
 
 const catchError = (errors = {}) => error => {
 	const e = {
-		...defaultErrors, ...errors,
+		...defaultErrors,
+		...errors,
 	};
 
 	if (error.response && error.response.status) {
@@ -38,7 +39,8 @@ export const getSchemes = () => {
 
 	if (config.ajax) {
 		return config.ajax({
-			method: 'GET', url: urlBuild('/schemas'),
+			method: 'GET',
+			url: urlBuild('/schemas'),
 		})
 			.then(data => {
 				if (!Array.isArray(data)) {
@@ -61,16 +63,22 @@ export const storeScheme = ({id, name, data, isProduction}) => {
 
 	if (config.ajax && data) {
 		const saveData = {
-			title: name, schemaType: isProduction ? 'prod' : 'dev', createdBy: 'username', content: data,
+			title: name,
+			schemaType: isProduction ? 'prod' : 'dev',
+			createdBy: 'username',
+			content: data,
 		};
 
 		const url = id ? urlBuild(`/schemas/${id}`) : urlBuild(`/schemas`);
 		const method = id ? 'PUT' : 'POST';
 
 		return config.ajax({
-			method: method, url: url, data: saveData,
+			method: method,
+			url: url,
+			data: saveData,
 		}).catch(catchError({
-			404: 'Мнемосхема не найдена', 500: 'Не удалось сохранить мнемосхему',
+			404: 'Мнемосхема не найдена',
+			500: 'Не удалось сохранить мнемосхему',
 		}));
 	}
 
@@ -82,10 +90,14 @@ export const getScheme = id => {
 
 	if (config.ajax && id) {
 		return config.ajax({
-			method: 'GET', url: urlBuild(`/schemas/${id}`),
+			method: 'GET',
+			url: urlBuild(`/schemas/${id}`),
 		})
 			.then(data => (data && {
-				id: data.id, name: data.title, isProduction: data.schemaType === 'prod', data: data.content,
+				id: data.id,
+				name: data.title,
+				isProduction: data.schemaType === 'prod',
+				data: data.content,
 			}))
 			.catch(catchError({
 				404: 'Мнемосхема не найдена',
@@ -100,7 +112,8 @@ export const removeScheme = id => {
 
 	if (config.ajax && id) {
 		return config.ajax({
-			method: 'DELETE', url: urlBuild(`/schemas/${id}`),
+			method: 'DELETE',
+			url: urlBuild(`/schemas/${id}`),
 		})
 			.catch(catchError());
 	}
