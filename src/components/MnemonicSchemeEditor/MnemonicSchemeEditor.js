@@ -1108,7 +1108,7 @@ class MnemonicSchemeEditor extends React.Component {
 }
 
 MnemonicSchemeEditor.propTypes = {
-	id: PropTypes.number,
+	id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	onCancel: PropTypes.func,
 	onSave: PropTypes.func,
 	mnemoscheme: PropTypes.object,
