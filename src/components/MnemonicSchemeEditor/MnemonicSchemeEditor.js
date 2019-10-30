@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Button, Col, Icon, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
+import Zoom from '../Zoom/Zoom';
 import Pipeline from './elements/Pipeline';
 import {equal, stop} from '../../utils';
-import {Button, Col, Icon, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
 import {findGroupByCode} from '../../constants';
 import {getScheme, storeScheme} from '../../utils/network';
 import PipelineConnection from './elements/PipelineConnection';
@@ -73,6 +74,8 @@ class MnemonicSchemeEditor extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			width: 124,
+			height: 76,
 			name: '',
 			isProduction: false,
 			loading: !!props.id,
@@ -84,8 +87,6 @@ class MnemonicSchemeEditor extends React.Component {
 			onMouseOverElement: null,
 		};
 		this.svgRef = React.createRef();
-		this.width = 124;
-		this.height = 76;
 	}
 
 	componentDidMount() {
@@ -152,8 +153,7 @@ class MnemonicSchemeEditor extends React.Component {
 	};
 
 	renderEditor = () => {
-		const width = this.width;
-		const height = this.height;
+		const {width, height} = this.state;
 
 		const grid = [];
 		for (let i = 1; i <= width - 1; i++) {
@@ -252,6 +252,11 @@ class MnemonicSchemeEditor extends React.Component {
 							</g>
 						))}
 				</svg>
+				<Zoom
+					setParentState={this.setState.bind(this)}
+					currentWidth={width}
+					currentHeight={height}
+				/>
 			</div>
 		);
 	};
@@ -748,8 +753,8 @@ class MnemonicSchemeEditor extends React.Component {
 		const result = newState.drawingFigure.onClick(
 			coords.x,
 			coords.y,
-			this.width,
-			this.height,
+			this.state.width,
+			this.state.height,
 			rightClick,
 			newState.elements,
 			newState.processingElements
@@ -788,8 +793,8 @@ class MnemonicSchemeEditor extends React.Component {
 		newState.processingElements = this.state.drawingFigure.onMove(
 			coords.x,
 			coords.y,
-			this.width,
-			this.height,
+			this.state.width,
+			this.state.height,
 			this.state.elements,
 			this.state.processingElements
 		);
@@ -821,8 +826,8 @@ class MnemonicSchemeEditor extends React.Component {
 		newState.processingElements = figure.onMove(
 			coords.x,
 			coords.y,
-			this.width,
-			this.height,
+			this.state.width,
+			this.state.height,
 			this.state.elements,
 			this.state.processingElements
 		);
@@ -926,8 +931,8 @@ class MnemonicSchemeEditor extends React.Component {
 				const result = figure.onClick(
 					coords.x,
 					coords.y,
-					this.width,
-					this.height,
+					this.state.width,
+					this.state.height,
 					false,
 					this.state.elements,
 					this.state.processingElements
@@ -938,8 +943,8 @@ class MnemonicSchemeEditor extends React.Component {
 					figure.onClick(
 						this.state.oldPosition.x,
 						this.state.oldPosition.y,
-						this.width,
-						this.height,
+						this.state.width,
+						this.state.height,
 						false,
 						this.state.elements,
 						this.state.processingElements
@@ -1012,6 +1017,7 @@ class MnemonicSchemeEditor extends React.Component {
 	 * Преобразование мышиных координат события в координаты на сетке
 	 */
 	coordinates = (event, rounded = true) => {
+		const {width, height} = this.state;
 		const svg = this.svgRef.current;
 		const rect = svg.getBoundingClientRect();
 		const svgWidth = rect.width - 2;
@@ -1020,8 +1026,8 @@ class MnemonicSchemeEditor extends React.Component {
 			top: rect.top + document.body.scrollTop, left: rect.left + document.body.scrollLeft,
 		};
 
-		let x = (event.clientX - offset.left) * this.width / svgWidth;
-		let y = (event.clientY - offset.top) * this.height / svgHeight;
+		let x = (event.clientX - offset.left) * width / svgWidth;
+		let y = (event.clientY - offset.top) * height / svgHeight;
 
 		if (rounded) {
 			x = Math.round(x);

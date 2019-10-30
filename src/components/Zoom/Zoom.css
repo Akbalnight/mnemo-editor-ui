@@ -1,0 +1,46 @@
+.zoom-wrapper {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+}
+
+.zoom-icon {
+	color: #0079c0;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+}
+
+.zoom-icon.disabled svg path {
+	opacity: .3;
+}
+
+.zoom-icon.disabled:active svg path {
+	opacity: .3;
+}
+
+.zoom-icon.disabled:hover {
+	transform: scale(1);
+}
+
+.zoom-icon:hover {
+	transform: scale(1.1);
+}
+
+.zoom-icon:hover svg path {
+	fill: #0085c0;
+}
+
+.zoom-icon:active svg path {
+	opacity: .8;
+}
+
+.zoom-icon:first-child {
+	margin-bottom: 10px;
+}
+
+.zoom-icon svg {
+	width: 35px;
+	height: 35px;
+}

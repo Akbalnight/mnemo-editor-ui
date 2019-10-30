@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Zoom from '../Zoom/Zoom';
 import Pipeline from '../MnemonicSchemeEditor/elements/Pipeline';
 import Text from '../MnemonicSchemeEditor/elements/Text';
 import PipelineConnection from '../MnemonicSchemeEditor/elements/PipelineConnection';
@@ -72,6 +73,8 @@ class MnemonicSchemeViewer extends React.Component {
 		super(props);
 
 		this.state = {
+			width: 124,
+			height: 76,
 			self: this,
 			prevMnemoschemeData: props.mnemoschemeData,
 			...this._prepareData(props.mnemoschemeData),
@@ -84,7 +87,8 @@ class MnemonicSchemeViewer extends React.Component {
 		const elements = data.map(d => FIGURES.find(f => f.code() === d.code).deserialize(d));
 
 		return {
-			elements, measureKeys: elements.map(e => e.measureKey).filter(k => k),
+			elements,
+			measureKeys: elements.map(e => e.measureKey).filter(k => k),
 		};
 	}
 
@@ -153,10 +157,8 @@ class MnemonicSchemeViewer extends React.Component {
 	}
 
 	render() {
+		const {width, height} = this.state;
 		const {className} = this.props;
-
-		const width = 124;
-		const height = 76;
 
 		const grid = [];
 
@@ -227,6 +229,11 @@ class MnemonicSchemeViewer extends React.Component {
 						</g>
 					))}
 				</svg>
+				<Zoom
+					setParentState={this.setState.bind(this)}
+					currentWidth={width}
+					currentHeight={height}
+				/>
 			</div>
 		);
 	}
