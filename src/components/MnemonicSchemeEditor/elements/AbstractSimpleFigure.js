@@ -159,6 +159,7 @@ class AbstractSimpleFigure extends AbstractFigure {
 		instance.setPosition(data.x, data.y);
 		instance.setTransformation(data.transformation);
 		instance.setLabelText(data.labelText);
+		instance.setMeasureValue(data.measureValue)
 
 		return instance;
 	};
