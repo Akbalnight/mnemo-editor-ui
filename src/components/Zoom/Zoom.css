@@ -8,15 +8,37 @@
 
 .zoom-icon {
 	color: #0079c0;
+	border:solid 3px #0079c0;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	line-height: 25px;
+	font-size: 30px;
+	text-align: center;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
+	display:inline-flex;
+	align-items: baseline;
+	justify-content: center;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.zoom-icon.disabled svg path {
+/*.zoom-icon.disabled svg path {*/
+/*	opacity: .3;*/
+/*}*/
+.zoom-icon.disabled {
 	opacity: .3;
 }
 
-.zoom-icon.disabled:active svg path {
+/*.zoom-icon.disabled:active svg path {*/
+/*	opacity: .3;*/
+/*}*/
+
+.zoom-icon.disabled:active {
 	opacity: .3;
 }
 

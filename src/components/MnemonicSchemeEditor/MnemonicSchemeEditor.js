@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Col, Icon, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
+import {Button, Col, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
+// import Icon from '@ant-design/icons';
+
 import Zoom from '../Zoom/Zoom';
 import Pipeline from './elements/Pipeline';
 import {equal, stop} from '../../utils';
@@ -135,16 +137,16 @@ class MnemonicSchemeEditor extends React.Component {
 					Мнемосхема
 				</div>
 
-				{this.renderTopPanel()}
+				{/*{this.renderTopPanel()}*/}
 
 				<div className='mnemonic-scheme-rightPanel-viewPanel-outerContainer'>
 					<div className='mnemonic-scheme-rightPanel-viewPanel-grid-outerContainer'>
-						{this.renderEditor()}
+						{/*{this.renderEditor()}*/}
 					</div>
 
 					<div className='mnemonic-scheme-rightPanel-viewPanel-bottomPanels-container'>
-						{this.renderLeftPanel()}
-						{this.renderRightPanel()}
+						{/*{this.renderLeftPanel()}*/}
+						{/*{this.renderRightPanel()}*/}
 					</div>
 				</div>
 
@@ -278,7 +280,8 @@ class MnemonicSchemeEditor extends React.Component {
 		return (
 			<div className={cssClass} key={figure.type} onClick={onClick}>
 				<span className='mnemonic-scheme-toolsPanel-tree-item-icon'>
-					<Icon component={figure.svgImage()} />
+					{/*<Icon component={figure.svgImage()} />*/}
+					<span>sas</span>
 				</span>
 				<span className='mnemonic-scheme-toolsPanel-tree-item-title'>
 					{figure.name()}
@@ -305,15 +308,16 @@ class MnemonicSchemeEditor extends React.Component {
 		return (
 			<Tree defaultExpandAll={true} className='mnemonic-scheme-toolsPanel-tree'>
 				{Object.getOwnPropertyNames(nonEmptyGroups).map(groupCode => {
-					const group = findGroupByCode(groupCode);
+					// const group = findGroupByCode(groupCode);
 					// для каждой группы на рендер рисуем её и все добавленные фигуры
 					return (
-						<Tree.TreeNode key={groupCode} title={group.title}>
-							{nonEmptyGroups[groupCode].map(figure => {
-								// return <Tree.TreeNode title={<span><Icon component={figure.svgImage()}/>  {figure.name()}</span>} />
-								return <Tree.TreeNode key={figure.code()} title={this.renderFigureNode(figure)} />;
-							})}
-						</Tree.TreeNode>
+						null
+						// <Tree.TreeNode key={groupCode} title={group.title}>
+						// 	{nonEmptyGroups[groupCode].map(figure => {
+						// 		// return <Tree.TreeNode title={<span><Icon component={figure.svgImage()}/>  {figure.name()}</span>} />
+						// 		return <Tree.TreeNode key={figure.code()} title={this.renderFigureNode(figure)} />;
+						// 	})}
+						// </Tree.TreeNode>
 					);
 				})}
 			</Tree>
@@ -516,11 +520,12 @@ class MnemonicSchemeEditor extends React.Component {
 				}
 
 				directions.push(
-					<Icon
-						key={JSON.stringify(transformation)} component={figure.svgImage()} className={className}
-						style={{'transform': transformationText}}
-						onClick={() => this.changeEditElementTransformation(transformation)}
-					/>
+					<span>1</span>
+					// <Icon
+					// 	key={JSON.stringify(transformation)} component={figure.svgImage()} className={className}
+					// 	style={{'transform': transformationText}}
+					// 	onClick={() => this.changeEditElementTransformation(transformation)}
+					// />
 				);
 			}
 			if (directions.length) {
@@ -529,10 +534,11 @@ class MnemonicSchemeEditor extends React.Component {
 					className += ' mnemonic-scheme-panel-icon-transform-choose-active';
 				}
 				directions.push(
-					<Icon
-						key={'normal'} component={figure.svgImage()} className={className}
-						onClick={() => this.changeEditElementTransformation(null)}
-					/>
+					<span>2</span>
+					// <Icon
+					// 	key={'normal'} component={figure.svgImage()} className={className}
+					// 	onClick={() => this.changeEditElementTransformation(null)}
+					// />
 				);
 			}
 		}

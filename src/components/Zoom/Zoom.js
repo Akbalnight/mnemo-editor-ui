@@ -1,7 +1,14 @@
 import React from 'react';
-import {Icon} from 'antd';
 import './Zoom.css';
 
+const SpanIcon = ({content, onClick, disabled}) => (
+	<div
+		className={`zoom-icon ${disabled ? 'disabled' : ''}`}
+		onClick={onClick}
+	>
+		<span>{content}</span>
+	</div>
+);
 
 export default class Zoom extends React.Component {
 	state = {
@@ -53,24 +60,32 @@ export default class Zoom extends React.Component {
 		}
 	};
 
+
 	render() {
 		const {isPlusDisabled, isMinusDisabled} = this.state;
+
+
 		return (
-			<div className='zoom-wrapper'>
-				<Icon
-					onClick={this.onPlusZoom}
-					className={`zoom-icon ${isPlusDisabled ? 'disabled' : ''}`}
-					type='plus-circle'
-					width={50}
-					height={50}
-				/>
-				<Icon
-					onClick={this.onMinusZoom}
-					className={`zoom-icon ${isMinusDisabled ? 'disabled' : ''}`}
-					type='minus-circle'
-					width={50}
-					height={50}
-				/>
+			<div className="zoom-wrapper">
+				{/*<Icon type="message" style={{ fontSize: '16px', color: '#08c' }} theme="outlined" />*/}
+				<SpanIcon content={'+'} onClick={this.onPlusZoom} disabled={isPlusDisabled}/>
+				<SpanIcon content={'-'} onClick={this.onMinusZoom} disabled={isMinusDisabled}/>
+				{/*<Icon*/}
+				{/*	onClick={this.onPlusZoom}*/}
+				{/*	className={`zoom-icon ${isPlusDisabled ? 'disabled' : ''}`}*/}
+				{/*	type='plus-circle'*/}
+				{/*	width={50}*/}
+				{/*	height={50}*/}
+				{/*	component={() => <PlusCircleOutlined/>}*/}
+				{/*/>*/}
+
+				{/*<Icon*/}
+				{/*	onClick={this.onMinusZoom}*/}
+				{/*	className={`zoom-icon ${isMinusDisabled ? 'disabled' : ''}`}*/}
+				{/*	type='minus-circle'*/}
+				{/*	width={50}*/}
+				{/*	height={50}*/}
+				{/*/>*/}
 			</div>
 		);
 	}
