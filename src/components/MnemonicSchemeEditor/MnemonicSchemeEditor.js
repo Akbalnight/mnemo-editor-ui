@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CloseOutlined, DeleteOutlined, SaveOutlined } from '@ant-design/icons';
 import {Button, Col, Row, Select, Tree, Modal, Input, Checkbox, notification} from 'antd';
 // import Icon from '@ant-design/icons';
 
@@ -308,18 +309,18 @@ class MnemonicSchemeEditor extends React.Component {
 		return (
 			<Tree defaultExpandAll={true} className='mnemonic-scheme-toolsPanel-tree'>
 				{Object.getOwnPropertyNames(nonEmptyGroups).map(groupCode => {
-					// const group = findGroupByCode(groupCode);
+					const group = findGroupByCode(groupCode);
 					// для каждой группы на рендер рисуем её и все добавленные фигуры
 					return (
-						null
-						// <Tree.TreeNode key={groupCode} title={group.title}>
-						// 	{nonEmptyGroups[groupCode].map(figure => {
-						// 		// return <Tree.TreeNode title={<span><Icon component={figure.svgImage()}/>  {figure.name()}</span>} />
-						// 		return <Tree.TreeNode key={figure.code()} title={this.renderFigureNode(figure)} />;
-						// 	})}
-						// </Tree.TreeNode>
+						<Tree.TreeNode key={groupCode} title={group.title}>
+							{nonEmptyGroups[groupCode].map(figure => {
+								// return <Tree.TreeNode title={<span><Icon component={figure.svgImage()}/>  {figure.name()}</span>} />
+								return <Tree.TreeNode key={figure.code()} title={this.renderFigureNode(figure)} />;
+							})}
+						</Tree.TreeNode>
 					);
-				})}
+				})
+				}
 			</Tree>
 		);
 	};
@@ -375,7 +376,7 @@ class MnemonicSchemeEditor extends React.Component {
 					<Col span={10} className='mnemonic-scheme-rightPanel-topInputs-rightGroup'>
 						<Button
 							type='default'
-							icon='close'
+							icon={<CloseOutlined />}
 							className='mnemonic-scheme-rightPanel-topInputs-button'
 							onClick={() => this.props.onCancel && this.props.onCancel()}
 						>
@@ -383,7 +384,7 @@ class MnemonicSchemeEditor extends React.Component {
 						</Button>
 						<Button
 							type='default'
-							icon='save'
+							icon={<SaveOutlined />}
 							className='mnemonic-scheme-rightPanel-topInputs-button'
 							onClick={this.onSaveClick}
 						>
@@ -432,7 +433,7 @@ class MnemonicSchemeEditor extends React.Component {
 						<Button
 							type='danger'
 							shape='circle'
-							icon='delete'
+							icon={<DeleteOutlined />}
 							size='small'
 							onClick={this.removeEditingElement}
 						/>
