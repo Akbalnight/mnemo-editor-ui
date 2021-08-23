@@ -1,14 +1,7 @@
 import React from 'react';
 import './Zoom.css';
+import {PlusCircleOutlined, MinusCircleOutlined} from '@ant-design/icons';
 
-const SpanIcon = ({content, onClick, disabled}) => (
-	<div
-		className={`zoom-icon ${disabled ? 'disabled' : ''}`}
-		onClick={onClick}
-	>
-		<span>{content}</span>
-	</div>
-);
 
 export default class Zoom extends React.Component {
 	state = {
@@ -67,9 +60,16 @@ export default class Zoom extends React.Component {
 
 		return (
 			<div className="zoom-wrapper">
-				{/*<Icon type="message" style={{ fontSize: '16px', color: '#08c' }} theme="outlined" />*/}
-				<SpanIcon content={'+'} onClick={this.onPlusZoom} disabled={isPlusDisabled}/>
-				<SpanIcon content={'-'} onClick={this.onMinusZoom} disabled={isMinusDisabled}/>
+				<PlusCircleOutlined
+					className={`zoom-icon ${isPlusDisabled ? 'disabled' : ''}`}
+					onClick={this.onPlusZoom}
+					disabled={isPlusDisabled}
+				/>
+				<MinusCircleOutlined
+					onClick={this.onMinusZoom}
+					className={`zoom-icon ${isMinusDisabled ? 'disabled' : ''}`}
+					disabled={isMinusDisabled}
+				/>
 				{/*<Icon*/}
 				{/*	onClick={this.onPlusZoom}*/}
 				{/*	className={`zoom-icon ${isPlusDisabled ? 'disabled' : ''}`}*/}
