@@ -32,11 +32,14 @@ class Text extends AbstractFigure {
 		let fontItalic = false;
 		let fontUnderline = false;
 
-		Modal.confirm({
+		const textModal = Modal.confirm({
 			title: 'Ввод текста',
 			centered: true,
 			closable: false,
 			width: 600,
+			okText:'Разместить',
+			cancelText:'Отменить',
+			okButtonProps:{disabled:true},
 
 			onCancel: () => {
 				callbackOnCancel();
@@ -44,7 +47,10 @@ class Text extends AbstractFigure {
 
 			content: (
 				<TextSettings
-					onTextChange={v => inputValue = v}
+					onTextChange={v => {
+						inputValue = v;
+						textModal.update({okButtonProps: {disabled: !v.length}});
+					}}
 					onChangeSize={v => inputValue = v}
 					onFontSizeChange={v => fontSize = v}
 					onFontBoldChange={v => fontBold = v}
@@ -106,14 +112,14 @@ class TextSettings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			text: 'Введите текст', fontSize: 'small', fontBold: false, fontItalic: false, fontUnderline: false,
+			text: '', fontSize: 'small', fontBold: false, fontItalic: false, fontUnderline: false,
 		};
 	}
 
 	render() {
 		return (
 			<div>
-				<Input onChange={this.setText} defaultValue={this.state.text} />
+				<Input onChange={this.setText} placeholder={'Введите текст'} defaultValue={this.state.text} />
 				<Radio.Group
 					onChange={this.setFontSize}
 					value={this.state.fontSize}
@@ -131,6 +137,7 @@ class TextSettings extends React.Component {
 							? ' mnemo-editor-font-btn-pressed'
 							: ''
 						)}
+						style={{fontWeight:'bold'}}
 						onClick={this.toggleFontBold}
 					>
 						Ж
@@ -141,6 +148,7 @@ class TextSettings extends React.Component {
 							? ' mnemo-editor-font-btn-pressed'
 							: ''
 						)}
+						style={{fontStyle:'italic'}}
 						onClick={this.toggleFontItalic}
 					>
 						К
@@ -153,7 +161,8 @@ class TextSettings extends React.Component {
 						)}
 						onClick={this.toggleFontUnderline}
 					>
-						Ч
+						<span 						style={{textDecoration:'underline'}}
+						>Ч</span>
 					</Button>
 				</div>
 			</div>

@@ -2,17 +2,25 @@
 	display: flex;
 	flex-direction: row;
 	height: 100%;
+	width: 100%;
   user-select: none;
 }
 
 /* Левый контейнер (инструменты) */
+.mnemonic-scheme-toolsPanel-container .ant-tree-switcher-noop{
+	display: none;
+}
+
 .mnemonic-scheme-toolsPanel-container {
-	width: 360px;
-	margin: 15px;
+	flex: 1 1 25%;
+	min-width: 300px;
+	max-width: 300px;
+	/*margin: 15px;*/
 	border: 1px solid #DDDFE1;
 	background: #fff;
-    overflow-y: scroll;
+	overflow-y: scroll;
     overflow-x: hidden;
+	padding-bottom:50px;
 }
 
 .mnemonic-scheme-toolsPanel-header {
@@ -24,10 +32,19 @@
 }
 
 /* Левый контейнер (инструменты) -> Дерево */
-.mnemonic-scheme-toolsPanel-tree-container .ant-tree-treenode-switcher-open {
+/* костыль для отключения паразитной подсветки выбранного элемента дерева */
+.mnemonic-scheme-toolsPanel-tree-container .ant-tree-node-content-wrapper.ant-tree-node-content-wrapper-normal.ant-tree-node-selected{
+	background:none;
+}
+.mnemonic-scheme-toolsPanel-tree-container .mnemonic-scheme-treeGroup {
+	margin-top: 15px;
+}
+.mnemonic-scheme-toolsPanel-tree-container .mnemonic-scheme-treeGroup:first-child{
 	margin-top: 1px;
 }
-
+.ant-tree.ant-tree-treenode{
+	font-weight: bold;
+}
 .mnemonic-scheme-toolsPanel-tree.ant-tree li .ant-tree-node-content-wrapper {
 	height: auto;
 }
@@ -97,12 +114,15 @@
 
 /* Правый контейнер */
 .mnemonic-scheme-drawingPanel-container {
-	width: calc(100% - 400px - 4px);
-	margin: 15px 15px 15px 0;
+	/*width: calc(100% - 400px - 4px);*/
+
+	/*margin: 15px 15px 15px 0;*/
+	margin: 0;
 	border: 1px solid #DDDFE1;
 	background: #fff;
 	display: flex;
 	flex-direction: column;
+	flex:1 1 75%;
 }
 
 .mnemonic-scheme-drawingPanel-header {
@@ -111,6 +131,47 @@
 	color: #0079C0;
 	font-weight: 500;
 	padding: 0 0 3px 5px;
+}
+
+/* контейнер кнопок редактора */
+.mnemonic-scheme-controlsPanel .smallFigures >span{
+	flex: 1 1 20%;
+	margin:auto;
+	text-align: center;
+}
+.mnemonic-scheme-controlsPanel .smallFigures .mnemonic-scheme-panel-icon-transform-choose > svg{
+	width: 32px;
+	height: 32px;
+}
+.mnemonic-scheme-controlsPanel .smallFigures .anticon{
+	margin-left: 3px;
+}
+.mnemonic-scheme-controlsPanel .smallFigures .anticon:last-child{
+	margin-left: 0
+}
+.mnemonic-scheme-controlsPanel .smallFigures{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	/*width: 130px;*/
+}
+.mnemonic-scheme-controlsPanel .flexCenter{
+	display: flex;
+	align-items: center;
+}
+.mnemonic-scheme-controlsPanel{
+	margin:0 15px;
+	display: flex;
+	justify-content: space-between;
+}
+.mnemonic-scheme-controlsPanel .buttonPanelGroup{
+	display: flex;
+	align-items: center;
+}
+.mnemonic-element-colorSelector{
+	display: inline-block;
+	width:25px;
+	height:10px;
 }
 
 /* Правый контейнер -> ряд input'ов сверху */
@@ -143,9 +204,9 @@
 
 /* Правый контейнер -> Контейнер с гридом */
 .mnemonic-scheme-rightPanel-viewPanel-outerContainer {
-	margin: 0 15px 15px 15px;
-	border: 1px solid #DDDFE1;
-	background-color: #e6e6e6;
+	/*margin: 0 15px 15px 15px;*/
+	/*border: 1px solid #DDDFE1;*/
+	/*background-color: #e6e6e6;*/
 	flex: 1 0 auto;
 	height: 0;
 	display: flex;
@@ -157,8 +218,8 @@
 
 	margin: 15px;
 	background-color: white;
-	border: 1px solid #DDDFE1;
-	padding: 15px;
+	border: 15px solid #DDDFE1;
+	/*padding: 15px;*/
 	overflow: auto;
 }
 

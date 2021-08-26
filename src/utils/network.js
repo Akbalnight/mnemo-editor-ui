@@ -58,7 +58,7 @@ export const storeScheme = ({id, name, data, isProduction}) => {
 	const config = get();
 
 	if (!name && !id) {
-		return Promise.reject(new Error('Не задано имя менмосхемы'));
+		return Promise.reject(new Error('Не задано имя мнемосхемы'));
 	}
 
 	if (config.ajax && data) {

@@ -3,7 +3,7 @@ import './Zoom.css';
 import {PlusCircleOutlined, MinusCircleOutlined} from '@ant-design/icons';
 
 
-export default class Zoom extends React.Component {
+ class Zoom extends React.Component {
 	state = {
 		isPlusDisabled: true,
 		isMinusDisabled: false,
@@ -70,23 +70,8 @@ export default class Zoom extends React.Component {
 					className={`zoom-icon ${isMinusDisabled ? 'disabled' : ''}`}
 					disabled={isMinusDisabled}
 				/>
-				{/*<Icon*/}
-				{/*	onClick={this.onPlusZoom}*/}
-				{/*	className={`zoom-icon ${isPlusDisabled ? 'disabled' : ''}`}*/}
-				{/*	type='plus-circle'*/}
-				{/*	width={50}*/}
-				{/*	height={50}*/}
-				{/*	component={() => <PlusCircleOutlined/>}*/}
-				{/*/>*/}
-
-				{/*<Icon*/}
-				{/*	onClick={this.onMinusZoom}*/}
-				{/*	className={`zoom-icon ${isMinusDisabled ? 'disabled' : ''}`}*/}
-				{/*	type='minus-circle'*/}
-				{/*	width={50}*/}
-				{/*	height={50}*/}
-				{/*/>*/}
 			</div>
 		);
 	}
 }
+export {Zoom};

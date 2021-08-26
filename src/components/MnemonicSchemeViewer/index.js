@@ -1,1 +1,1 @@
-export {default as MnemonicSchemeViewer} from './MnemonicSchemeViewer';
+export {MnemonicSchemeViewer} from './MnemonicSchemeViewer';

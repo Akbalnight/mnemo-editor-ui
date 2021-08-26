@@ -139,6 +139,13 @@ class MnemonicSchemeViewer extends React.Component {
 		this._detachInterval();
 	}
 
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		if (nextProps.dataRequestMarker !== this.props.dataRequestMarker) {
+			this.dataRequest();
+		}
+		return true;
+	}
+
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		if (prevProps.dataRequestInterval !== this.props.dataRequestInterval) {
 			this._attachInterval();
@@ -155,6 +162,7 @@ class MnemonicSchemeViewer extends React.Component {
 
 		return {};
 	}
+
 
 	render() {
 		const {width, height} = this.state;
@@ -244,6 +252,8 @@ MnemonicSchemeViewer.propTypes = {
 	mnemoschemeData: PropTypes.array,
 	dataRequestInterval: PropTypes.number,
 	onDataRequest: PropTypes.func,
+	dataRequestMarker: PropTypes.number, // timestamp or random number
+	onRefresh: PropTypes.func,
 };
 
-export default MnemonicSchemeViewer;
+export {MnemonicSchemeViewer};
