@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import Zoom from '../Zoom/Zoom';
+import {Zoom} from '../Zoom/Zoom';
 import Pipeline from '../MnemonicSchemeEditor/elements/Pipeline';
 import Text from '../MnemonicSchemeEditor/elements/Text';
 import PipelineConnection from '../MnemonicSchemeEditor/elements/PipelineConnection';
@@ -114,13 +114,13 @@ class MnemonicSchemeViewer extends React.Component {
 		if (this.props.onDataRequest) {
 			const resultOrPromise = this.props.onDataRequest(this.state.measureKeys);
 			const promise = Promise.resolve(resultOrPromise);
-
 			promise.then(data => {
 				if (data) {
 					const newElements = [...this.state.elements];
 					newElements.forEach(e => {
 						if (e.measureKey) {
-							e.setMeasureValue(data[e.measureKey] || '');
+							const roundTo = e.rounding || 2;
+							e.setMeasureValue(data[e.measureKey].toFixed(roundTo) || '');
 						}
 					});
 					this.setState({

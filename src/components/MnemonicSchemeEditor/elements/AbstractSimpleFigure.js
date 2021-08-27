@@ -140,7 +140,7 @@ class AbstractSimpleFigure extends AbstractFigure {
 	serialize = e => {
 		const data = {code: e.codeId, x: e.position.x, y: e.position.y};
 
-		['id', 'color', 'transformation', 'labelText', 'measureKey'].forEach(attr => void (data[attr] = e[attr]));
+		['id', 'color', 'transformation', 'labelText', 'measureKey', 'rounding'].forEach(attr => void (data[attr] = e[attr]));
 		return data;
 	};
 
@@ -154,6 +154,7 @@ class AbstractSimpleFigure extends AbstractFigure {
 			color: data.color,
 			measures: this.measures(),
 			measureKey: data.measureKey,
+			rounding: data.rounding,
 		});
 
 		instance.setPosition(data.x, data.y);
@@ -169,7 +170,7 @@ class SimpleFigureInstance {
 	code = () => this.codeId;
 
 	constructor({
-		id, codeId, svgImage, width, height, color, measures, measureKey, measureValue, canBeMounted = true,
+		id, codeId, svgImage, width, height, color, measures, measureKey, measureValue, canBeMounted = true, rounding
 	}) {
 		this.id = id;
 		this.codeId = codeId;
@@ -184,6 +185,7 @@ class SimpleFigureInstance {
 		this.canBeMounted = canBeMounted;
 		this.transformation = null;
 		this.labelText = measures && measures[0];
+		this.rounding = rounding || 2;
 	}
 
 	render = () => {
@@ -317,6 +319,10 @@ class SimpleFigureInstance {
 		this.labelText = labelText;
 	};
 
+	setRounding = rounding => {
+		this.rounding = rounding;
+	};
+
 	setMeasureKey = key => {
 		this.measureKey = key;
 	};
@@ -363,6 +369,7 @@ class SimpleFigureElement extends React.Component {
 		isMeasure: PropTypes.bool,
 		isMeter: PropTypes.bool,
 		labelText: PropTypes.string,
+		rounding: PropTypes.number,
 		measureValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	};
 
