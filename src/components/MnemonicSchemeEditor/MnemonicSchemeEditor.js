@@ -340,7 +340,7 @@ class MnemonicSchemeEditor extends React.Component {
 		}
 
 		const measures = this.elementFigure(this.state.editingElement).measures();
-
+		const roundingVariants = [0, 1, 2, 3, 4]; //варианты округления
 		if (!measures) return null;
 		return (
 			<Space size={3}>
@@ -369,6 +369,20 @@ class MnemonicSchemeEditor extends React.Component {
 					}}
 				>
 					{measures.map(value => <Select.Option key={value} value={value}>{value}</Select.Option>)}
+				</Select>
+				<div>Округлить:</div>
+				<Select
+					value={this.state.editingElement && this.state.editingElement.rounding
+						? this.state.editingElement.rounding
+						: roundingVariants[0]
+					}
+					onChange={value => {
+						const newState = {...this.state};
+						newState.editingElement.setRounding(value);
+						this.setState(newState);
+					}}
+				>
+					{roundingVariants.map(value => <Select.Option key={value} value={value}>{value}</Select.Option>)}
 				</Select>
 			</Space>
 		);
