@@ -176,20 +176,30 @@
 
 /* Правый контейнер -> ряд input'ов сверху */
 .mnemonic-scheme-drawingPanel-topInputs-container {
-	margin: 20px 15px 15px 15px;
+	margin: 10px 15px;
+}
+.mnemonic-scheme-drawingPanel-rightInputs-container {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .mnemonic-scheme-drawingPanel-topInputs-leftGroup {
-  display: flex;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding-right: 20px;
 }
 
 .mnemonic-scheme-drawingPanel-topInputs-name {
-	width: 0 !important;
-  margin-right: 10px !important;
-  flex: 1 0 auto;
+	width: 100% !important;
+	margin-right: 10px !important;
+	flex: 1 1 100%;
 }
-
+.mnemonic-scheme-flexColumn{
+	padding-left: 15px;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
 .mnemonic-scheme-drawingPanel-topInputs-checkbox {
   flex: 0 0 auto;
 }

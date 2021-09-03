@@ -120,7 +120,7 @@ class MnemonicSchemeViewer extends React.Component {
 					newElements.forEach(e => {
 						if (e.measureKey) {
 							const roundTo = e.rounding || 2;
-							e.setMeasureValue(data[e.measureKey].toFixed(roundTo) || '');
+							e.setMeasureValue(data[e.measureKey]?.toFixed(roundTo) || '');
 						}
 					});
 					this.setState({
