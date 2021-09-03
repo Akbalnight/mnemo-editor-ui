@@ -168,6 +168,7 @@ class MnemonicSchemeEditor extends React.Component {
 			</div>
 		</div>);
 	};
+
 	renderColorControls = () => {
 		/** colors model */
 		const colors = ['#b80000', '#1273de', '#ffb307', '#008b02', '#006b76', '#000000'];
@@ -247,8 +248,8 @@ class MnemonicSchemeEditor extends React.Component {
 		return (
 			<Space size={3}>
 				<Input
-					placeholder='Выберите текст'
-					style={{width:'200px'}}
+					placeholder="Выберите текст"
+					style={{width: '200px'}}
 					value={(this.state.editingElement && this.state.editingElement.text) || ''}
 					onChange={event => {
 						const newState = {...this.state};
@@ -306,14 +307,14 @@ class MnemonicSchemeEditor extends React.Component {
 	);
 
 	/** сбрасывает режим рисования и выбранные элементы */
-	clearDrawing=()=>{
+	clearDrawing = () => {
 		const newState = {...this.state};
 		newState.mode = 'none';
 		newState.drawingFigure = null;
 		newState.processingElements = [];
 		newState.editingElement = null;
 		this.setState(newState);
-	}
+	};
 
 	renderMoveButton = () => {
 		const buttonProps = (
@@ -322,8 +323,8 @@ class MnemonicSchemeEditor extends React.Component {
 			&& !this.state.processingElements.length
 			&& !this.state.editingElement
 		)
-			? {type:'primary', ghost:true}
-			: {type:'default'};
+			? {type: 'primary', ghost: true}
+			: {type: 'default'};
 		return <Tooltip title={'Режим выбора элементов'}>
 			<Button
 				{...buttonProps}
@@ -333,7 +334,7 @@ class MnemonicSchemeEditor extends React.Component {
 		</Tooltip>;
 	};
 
-	renderAssignmentControls=()=>{
+	renderAssignmentControls = () => {
 
 		if (!this.state.editingElement) {
 			return null;
@@ -387,7 +388,7 @@ class MnemonicSchemeEditor extends React.Component {
 			</Space>
 		);
 
-	}
+	};
 
 	renderDirectionControls = () => {
 		const figure = !this.state.editingElement ? null : this.elementFigure(this.state.editingElement);
@@ -672,6 +673,11 @@ class MnemonicSchemeEditor extends React.Component {
 			isProduction: e.target.checked,
 		});
 	};
+	asNewChange = e => {
+		this.setState({
+			asNew: e.target.checked,
+		});
+	};
 
 	renderTopPanel = () => {
 
@@ -679,7 +685,7 @@ class MnemonicSchemeEditor extends React.Component {
 			<div className="mnemonic-scheme-drawingPanel-topInputs-container">
 				<Row>
 					<Col span={14}>
-						<div className="mnemonic-scheme-drawingPanel-topInputs-leftGroup">
+						<div className={'mnemonic-scheme-drawingPanel-topInputs-leftGroup'}>
 							<Input
 								className="mnemonic-scheme-drawingPanel-topInputs-name"
 								placeholder="Введите название мнемосхемы"
@@ -696,21 +702,27 @@ class MnemonicSchemeEditor extends React.Component {
 						</div>
 					</Col>
 
-					<Col span={10} className="mnemonic-scheme-rightPanel-topInputs-rightGroup">
-						<Space>
+					<Col span={10}>
+						<div className={'mnemonic-scheme-drawingPanel-rightInputs-container'}>
 							<Button
 								type="default"
 								icon={<CloseOutlined/>}
 								onClick={() => this.props.onCancel && this.props.onCancel()}
 							>Отмена</Button>
-							<Button
-								type="primary"
-								ghost
-								icon={<SaveOutlined/>}
-								disabled={!(this.state.name && this.state.name.length > 0)}
-								onClick={this.onSaveClick}
-							>Сохранить</Button>
-						</Space>
+							<div className={'mnemonic-scheme-flexColumn'}>
+								<Button
+									type="primary"
+									ghost
+									icon={<SaveOutlined/>}
+									disabled={!(this.state.name && this.state.name.length > 0)}
+									onClick={this.onSaveClick}
+								>Сохранить</Button>
+								<Checkbox
+									onChange={this.asNewChange}
+								>Как шаблон</Checkbox>
+							</div>
+						</div>
+
 					</Col>
 				</Row>
 			</div>
